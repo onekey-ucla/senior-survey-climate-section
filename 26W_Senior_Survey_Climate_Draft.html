@@ -24,6 +24,7 @@
     --option-a: #6b4f8e;
     --option-b: #2774AE;
     --option-c: #2f6f4a;
+    --option-d: #b85c00;
     --shadow-sm: 0 1px 2px rgba(20,20,40,0.04);
     --shadow-md: 0 4px 14px rgba(20,20,40,0.08);
   }
@@ -63,6 +64,43 @@
   }
   .mode-switch button.active { background: #fff; color: var(--ink);
     box-shadow: var(--shadow-sm); }
+
+  .text-size-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    background: var(--rule-soft);
+    border-radius: 8px;
+    padding: 3px;
+    border: 1px solid var(--rule);
+  }
+  .text-size-switch .ts-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    padding: 0 6px 0 8px;
+    white-space: nowrap;
+  }
+  .text-size-switch button {
+    background: transparent;
+    border: 0;
+    padding: 6px 10px;
+    font-size: 13px;
+    font-family: inherit;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--muted);
+    min-width: 2.25rem;
+  }
+  .text-size-switch button.active {
+    background: #fff;
+    color: var(--ink);
+    box-shadow: var(--shadow-sm);
+  }
+  body.text-size-small { zoom: 0.88; }
+  body.text-size-medium { zoom: 1; }
+  body.text-size-large { zoom: 1.12; }
 
   /* Progress */
   .progress-row {
@@ -104,6 +142,33 @@
   .welcome ul.intro-list li { margin: 6px 0; font-size: 14.5px; }
   .welcome .privacy { background: var(--accent-soft); border-left: 3px solid var(--accent);
     padding: 14px 16px; border-radius: 0 8px 8px 0; font-size: 13.5px; color: var(--accent-2); margin: 12px 0; }
+  .welcome .prior-instrument {
+    background: #fafbfd;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 16px 0 20px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .welcome .prior-instrument .prior-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent-2);
+    margin: 0 0 10px;
+  }
+  .welcome .prior-instrument .prior-stem { font-weight: 600; margin: 0 0 12px; }
+  .welcome .prior-instrument .prior-scale {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 14px;
+  }
+  .welcome .prior-instrument ul { margin: 0; padding-left: 20px; }
+  .welcome .prior-instrument li { margin: 6px 0; }
+  .welcome .prior-note { margin: 0 0 8px; font-size: 14.5px; line-height: 1.55; color: var(--ink); }
 
   /* Question block (within page) */
   .question { margin: 22px 0 28px; }
@@ -115,6 +180,7 @@
   .stem-note { font-style: italic; color: var(--muted); font-size: 13.5px;
     background: #fafbfd; border-left: 3px solid var(--rule); padding: 10px 14px;
     margin: 0 0 12px 46px; border-radius: 0 6px 6px 0; }
+  .page-header .stem-note { margin-left: 0; margin-top: 10px; }
   .q-body { margin-left: 46px; }
 
   /* Likert scale tiles */
@@ -159,6 +225,51 @@
   table.matrix tbody tr:hover { background: #fafbfd; }
   table.matrix tbody tr:hover th { background: #fafbfd; }
   table.matrix input[type="radio"] { accent-color: var(--accent); width: 16px; height: 16px; cursor: pointer; }
+  table.matrix-expr-unified tbody tr.expr-context-banner th {
+    background: #e8f1f8;
+    color: var(--accent-2);
+    font-weight: 700;
+    font-size: 13px;
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: middle;
+  }
+  table.matrix-expr-unified tbody tr.expr-context-banner:hover,
+  table.matrix-expr-unified tbody tr.expr-context-banner:hover th {
+    background: #ddeaf4;
+  }
+  /* Q4 Options A–C: same table shape as D; pick setting from dropdown */
+  .q4-dropdown-matrix { margin: 0; }
+  .q4-setting-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .q4-setting-row label {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .q4-context-select {
+    font: inherit;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--rule);
+    min-width: min(100%, 32rem);
+    max-width: 100%;
+    background: #fff;
+    cursor: pointer;
+    color: var(--ink);
+  }
+  .q4-context-select:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .q4-matrix-sheets .q4-matrix-sheet[hidden] { display: none !important; }
 
   /* Option list */
   .opt-list { display: flex; flex-direction: column; gap: 6px; }
@@ -183,6 +294,26 @@
     border-left: 3px solid var(--accent); background: #f7fbfd; border-radius: 0 8px 8px 0; }
   .cond-tag { font-size: 11px; color: var(--accent-2); font-weight: 700;
     letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  select.q4-follow-select {
+    width: 100%;
+    max-width: 520px;
+    font-family: inherit;
+    font-size: 13.5px;
+    padding: 10px 12px;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--ink);
+    min-height: 140px;
+  }
+  select.q4-follow-select option { padding: 6px 4px; }
+  select.q4-follow-select option:disabled { color: var(--soft); }
+  .q4-follow-other-row { margin-top: 12px; max-width: 520px; }
+  .q4-follow-other-row label { font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px; }
+  .q4-follow-other-row input[type="text"] {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 8px;
+    font-family: inherit; font-size: 14px;
+  }
 
   /* Q4 option preview switcher (student mode) */
   .option-switch {
@@ -202,6 +333,20 @@
   .option-switch .tabs button.active { color: white; background: var(--accent); }
   .option-pane { display: none; }
   .option-pane.active { display: block; }
+  /* Student preview: hide A/B/C tabs (only Option D is used) */
+  body:not(.reviewer-mode) .option-switch {
+    display: none !important;
+  }
+  /* Student preview: only the shortened Q4 (Option D); hide A/B/C panes */
+  body:not(.reviewer-mode) .option-pane[data-pane="A"],
+  body:not(.reviewer-mode) .option-pane[data-pane="B"],
+  body:not(.reviewer-mode) .option-pane[data-pane="C"] {
+    display: none !important;
+  }
+  body:not(.reviewer-mode) .option-pane[data-pane="D"] {
+    display: block !important;
+  }
+  body.reviewer-mode .q4-lite-student-note { display: none; }
   .opt-meta-banner { font-size: 12.5px; color: var(--muted);
     background: #fafbfd; padding: 8px 12px; border-radius: 6px; border-left: 3px solid var(--soft);
     margin-bottom: 10px; }
@@ -235,9 +380,14 @@
   /* Three-column row, ALWAYS — never stack vertically in reviewer mode */
   body.reviewer-mode .options-grid {
     display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
     gap: 12px !important;
     margin-left: 0 !important;
+  }
+  @media (max-width: 1200px) {
+    body.reviewer-mode .options-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
   }
   body.reviewer-mode .options-grid .option-card {
     min-width: 0;
@@ -306,20 +456,43 @@
   }
   .overview-header { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
   .overview-tag {
-    font-size: 11px; font-weight: 700;
+    font-size: 12px; font-weight: 700;
     color: var(--accent-2);
     text-transform: uppercase; letter-spacing: 0.08em;
   }
-  .overview-header h3 { margin: 4px 0 0; font-size: 20px; font-weight: 700; }
-  .overview-sub { margin: 6px 0 0; color: var(--muted); font-size: 13.5px; line-height: 1.55; }
-  .overview-tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .overview-header h3 { margin: 4px 0 0; font-size: 22px; font-weight: 700; }
+  .overview-sub { margin: 6px 0 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
+  .overview-narrative {
+    margin: 16px 0 20px;
+    padding: 18px 20px;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    background: #fafbfd;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .overview-narrative h4 { margin: 0 0 12px; font-size: 17px; font-weight: 700; color: var(--ink); }
+  .overview-narrative h5 {
+    margin: 20px 0 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent-2);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .overview-narrative p { margin: 0 0 12px; }
+  .overview-narrative ul { margin: 6px 0 0; padding-left: 20px; }
+  .overview-narrative li { margin: 7px 0; }
+  .overview-narrative .muted { color: var(--muted); font-size: 14px; }
+  .overview-tbl { width: 100%; border-collapse: collapse; font-size: 15px; }
   .overview-tbl th {
-    text-align: left; font-size: 10.5px; font-weight: 700;
+    text-align: left; font-size: 11.5px; font-weight: 700;
     color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em;
-    padding: 10px 10px; border-bottom: 1px solid var(--rule);
+    padding: 11px 10px; border-bottom: 1px solid var(--rule);
   }
   .overview-tbl td {
-    padding: 12px 10px;
+    padding: 13px 10px;
     border-bottom: 1px solid var(--rule-soft);
     vertical-align: top;
     line-height: 1.5;
@@ -331,23 +504,23 @@
     color: var(--accent-2);
     background: var(--accent-soft);
     width: 34px; text-align: center;
-    font-size: 13px;
+    font-size: 14px;
   }
   .overview-tbl td.section-name strong { color: var(--ink); }
   .overview-tbl td.section-items {
-    color: var(--muted); font-size: 12.5px; white-space: nowrap;
+    color: var(--muted); font-size: 13px; white-space: nowrap;
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   }
   .overview-tbl td.decision {
     color: #8a5e05;
-    font-size: 12.5px;
+    font-size: 13px;
   }
   .overview-tbl td.decision::before {
     content: "◆ ";
     color: #c98a08;
     font-weight: 700;
   }
-  .overview-tbl td.no-decision { color: var(--soft); font-size: 12.5px; }
+  .overview-tbl td.no-decision { color: var(--soft); font-size: 13px; }
 
   /* Leadership decision block — single consolidated question */
   .decision-block {
@@ -402,10 +575,12 @@
     padding: 16px; border-top: 4px solid var(--option-a); display: flex; flex-direction: column; }
   .option-card.b { border-top-color: var(--option-b); }
   .option-card.c { border-top-color: var(--option-c); }
+  .option-card.d { border-top-color: var(--option-d); }
   .option-card .opt-label { font-weight: 700; font-size: 12px;
     text-transform: uppercase; letter-spacing: 0.06em; color: var(--option-a); margin-bottom: 4px; }
   .option-card.b .opt-label { color: var(--option-b); }
   .option-card.c .opt-label { color: var(--option-c); }
+  .option-card.d .opt-label { color: var(--option-d); }
   .option-card h4 { margin: 2px 0 12px; font-size: 14.5px; line-height: 1.35; }
   .option-card .opt-prompt { font-size: 13px; font-weight: 600; margin: 0 0 8px; color: var(--ink); }
   .option-card .opt-tradeoff { margin-top: auto; padding-top: 12px;
@@ -515,7 +690,7 @@
     font-weight: 700; vertical-align: middle; text-transform: uppercase; letter-spacing: 0.05em; }
 </style>
 </head>
-<body class="reviewer-mode">
+<body class="reviewer-mode text-size-medium">
 
 <div class="header-bar">
   <div class="header-inner">
@@ -523,14 +698,22 @@
       <span class="swatch"></span>
       <span>UCLA Senior Survey · Campus Climate</span>
     </div>
-    <div class="mode-switch">
-      <button id="mode-reviewer" class="active">Reviewer mode</button>
-      <button id="mode-student">Student preview</button>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <div class="mode-switch">
+        <button id="mode-reviewer" class="active">Reviewer mode</button>
+        <button id="mode-student">Student preview</button>
+      </div>
+      <div class="text-size-switch" role="group" aria-label="Text size">
+        <span class="ts-label">Text</span>
+        <button type="button" id="text-size-small" data-text-size="small" title="Smaller text">A−</button>
+        <button type="button" id="text-size-medium" class="active" data-text-size="medium" title="Default text size">A</button>
+        <button type="button" id="text-size-large" data-text-size="large" title="Larger text">A+</button>
+      </div>
     </div>
   </div>
   <div class="progress-row" id="progress-row">
     <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
-    <div class="progress-text" id="progress-text">Page 1 of 11</div>
+    <div class="progress-text" id="progress-text">Page 1 of 9</div>
   </div>
 </div>
 
@@ -541,8 +724,43 @@
     <div class="overview-header">
       <span class="overview-tag">Survey structure at a glance</span>
       <h3>Section overview</h3>
-      <p class="overview-sub">7 sections + end-of-survey demographics + open response. Estimated 8–12 minutes for students. <strong>Six decisions pending</strong> from leadership (marked ◆).</p>
+      <p class="overview-sub">6 sections + open response. Estimated 8–12 minutes for students. <strong>Six decisions pending</strong> from leadership (marked ◆). For the UC Berkeley Campus Climate Project report (context for peer UC framing), see <strong>references</strong> at the end of this document.</p>
     </div>
+
+    <div class="overview-narrative">
+      <h4>Berkeley report themes → how this draft responds</h4>
+      <p class="muted">The <a href="https://campusclimate.ucop.edu/_common/files/pdf-climate/ucb-full-report.pdf" target="_blank" rel="noopener">UC Berkeley Campus Climate Project final report</a> (UCOP) frames systemwide climate work around inclusion, safety, and the conditions under which students can learn and belong. It foregrounds experiences of exclusion or bias, institutional support and responsiveness, and the quality of disagreement and dialogue—not only counts of incidents.</p>
+      <h5>What the Berkeley-style narrative tends to emphasize</h5>
+      <ul>
+        <li><strong>Belonging and respect</strong> across differences</li>
+        <li><strong>Fair treatment</strong> and freedom from harassment or discrimination</li>
+        <li><strong>Institutional support</strong> (policies, programs, services) for diverse identities and needs</li>
+        <li><strong>Expression and dialogue</strong>—whether students can participate and speak in class, with peers, and with faculty without fear</li>
+        <li><strong>Reporting and follow-through</strong>—awareness of channels and perceived quality of response</li>
+      </ul>
+      <h5>Where those ideas show up in <em>this</em> instrument</h5>
+      <ul>
+        <li><strong>Sec 1 (Q1–2):</strong> headline belonging and respect</li>
+        <li><strong>Sec 2 (Q3):</strong> UCLA support for diversity by identity dimension (matrix aligned with HERI-style institutional climate)</li>
+        <li><strong>Sec 3 (Q4):</strong> comfort expressing views — <strong>student preview uses Option D</strong> (4 topics × one combined setting); in reviewer mode, <strong>A–C use a setting dropdown</strong> with the <strong>same table layout as D</strong> per setting.</li>
+        <li><strong>Sec 4 (Q5–6):</strong> dialogue climate and peer treatment of identity / viewpoint groups</li>
+        <li><strong>Sec 5 (Q7+):</strong> experienced or observed bias or discrimination, with follow-ups</li>
+        <li><strong>Sec 6 (Q10–11):</strong> self-censorship on politics and religion</li>
+        <li><strong>Q12:</strong> optional open narrative</li>
+      </ul>
+      <h5>Section 3 (Expression climate / Q4) — it is a lot; how to streamline</h5>
+      <p><strong>Student preview</strong> uses <strong>Option D</strong> — one combined context × <strong>four</strong> priority topics. <strong>Reviewer mode</strong> adds A–C: respondents choose each setting from a <strong>menu</strong> and see the same compact topic × scale grid as D (not a wide multi-column table).</p>
+      <p>Even <strong>Option B</strong> is <strong>24 cells</strong> (8 topics × 3 contexts); Option A is <strong>40 cells</strong>. Practical ways to lighten burden <em>without</em> dropping the construct:</p>
+      <ul>
+        <li><strong>Ship Option D (or C)</strong> in production for the senior survey; reserve A or B for pilots, alternate years, or deep-dive samples.</li>
+        <li><strong>Fewer topic rows</strong> in production (e.g. retain race, religion, politics, and one “other sensitive” bucket) if analysts pre-specify which contrasts matter for UCLA reporting.</li>
+        <li><strong>One context only</strong> for the whole class (e.g. “in class and coursework”) and move peers/faculty online to a <strong>short optional module</strong> or follow-up survey.</li>
+        <li><strong>Remove student-facing A/B/C tabs</strong> in the live instrument (this draft already hides them in student preview); pick one structure after piloting.</li>
+        <li><strong>Pilot for straight-lining and time-on-task</strong>; if fatigue is high, shorten before scaling.</li>
+      </ul>
+      <p class="muted">Final wording and which streamlining steps are acceptable should be confirmed with survey methods, IRB, and any compliance or policy stakeholders who rely on specific benchmarks.</p>
+    </div>
+
     <table class="overview-tbl">
       <thead>
         <tr>
@@ -572,8 +790,8 @@
           <td class="num">3</td>
           <td class="section-name"><strong>Expression Climate</strong></td>
           <td class="section-items">Q4</td>
-          <td>Comfort expressing views on 8 topics × context(s)</td>
-          <td class="decision">Adopt Option A, B, or C? Online / events contexts kept?</td>
+          <td>Comfort expressing views; optional multi-select <strong>where</strong> dropdown if any response is <strong>1</strong> (very uncomfortable)</td>
+          <td class="decision">Adopt D for production vs. B/C for more cells? Keep A for benchmarking samples?</td>
         </tr>
         <tr>
           <td class="num">4</td>
@@ -591,24 +809,10 @@
         </tr>
         <tr>
           <td class="num">6</td>
-          <td class="section-name"><strong>Reporting &amp; Institutional Response</strong></td>
-          <td class="section-items">Q8, Q9</td>
-          <td>Reporting behavior; satisfaction with UCLA's response</td>
-          <td class="no-decision">—</td>
-        </tr>
-        <tr>
-          <td class="num">7</td>
           <td class="section-name"><strong>Self-Censorship · Viewpoint Climate</strong></td>
           <td class="section-items">Q10, Q11</td>
           <td>Hesitation to share political / religious views</td>
-          <td class="decision">Add political / religious demographic items?</td>
-        </tr>
-        <tr>
-          <td class="num">D</td>
-          <td class="section-name"><strong>Demographics</strong> <span style="color:var(--you);font-size:11px;text-transform:uppercase;letter-spacing:0.04em;font-weight:700;">proposed</span></td>
-          <td class="section-items">D15–D18</td>
-          <td>Political ideology, party, religion, religiosity (end of survey)</td>
-          <td class="no-decision">—</td>
+          <td class="decision">Subgroup interpretation of Q10–Q11 may need background items from another source.</td>
         </tr>
         <tr>
           <td class="num">F</td>
@@ -625,11 +829,22 @@
   <section class="page welcome active" data-page="0">
     <h1>UCLA Campus Climate Survey</h1>
     <div class="lead">Thank you for being part of this year's senior survey. Your experiences help UCLA understand how students are doing — and where we can do better.</div>
-    <ul class="intro-list">
-      <li><strong>Time:</strong> About 8–12 minutes.</li>
-      <li><strong>Sections:</strong> Belonging, expression climate, peer environment, experiences of bias, reporting, self-censorship, and a few demographic questions at the end.</li>
-      <li><strong>Optional questions:</strong> Most questions are optional. You can choose "Prefer not to answer" or skip where allowed.</li>
-    </ul>
+    <p class="prior-note">For context, <strong>through 2025</strong> the senior survey previously fielded an institutional-support item worded and structured as follows:</p>
+    <div class="prior-instrument" role="region" aria-label="2025 prior survey item">
+      <p class="prior-label">Prior item (through 2025)</p>
+      <p class="prior-stem">To what extent do you agree that UCLA provides a supportive environment for diversity with regard to the following social identities?</p>
+      <p class="prior-scale"><strong>Response scale:</strong> 1 = Strongly disagree · 2 = Disagree · 3 = Agree · 4 = Strongly agree</p>
+      <ul>
+        <li>Race/ethnicity</li>
+        <li>Gender</li>
+        <li>Socioeconomic status</li>
+        <li>Political affiliation</li>
+        <li>Religious beliefs</li>
+        <li>Sexual orientation</li>
+        <li>Ability/disability</li>
+        <li>Age</li>
+      </ul>
+    </div>
     <div class="privacy">
       <strong>Confidentiality.</strong> Your individual responses are confidential. Results are reported only in aggregate, and subgroups with fewer than 10 respondents are not separately reported.
     </div>
@@ -642,7 +857,7 @@
   <!-- ============ PAGE 1 — Section 1 ============ -->
   <section class="page" data-page="1">
     <div class="page-header">
-      <div class="section-tag">Section 1 of 7</div>
+      <div class="section-tag">Section 1 of 6</div>
       <h2 class="page-title">Belonging and respect</h2>
       <p class="page-sub">Tell us about your general experience at UCLA.</p>
     </div>
@@ -688,7 +903,7 @@
   <!-- ============ PAGE 2 — Section 2 ============ -->
   <section class="page" data-page="2">
     <div class="page-header">
-      <div class="section-tag">Section 2 of 7</div>
+      <div class="section-tag">Section 2 of 6</div>
       <h2 class="page-title">Institutional support</h2>
       <p class="page-sub">How well does UCLA support diversity across different identities?</p>
     </div>
@@ -728,18 +943,20 @@
   <!-- ============ PAGE 3 — Section 3 (Q4 with option switcher) ============ -->
   <section class="page" data-page="3">
     <div class="page-header">
-      <div class="section-tag">Section 3 of 7</div>
+      <div class="section-tag">Section 3 of 6</div>
       <h2 class="page-title">Expression climate</h2>
       <p class="page-sub">How comfortable did you feel sharing your views on different topics?</p>
+      <p class="stem-note q4-shared-scale">Use the <strong>setting</strong> menu where shown (Options A–C); the table matches Option D: one row per topic and columns <strong>1</strong> = very uncomfortable … <strong>4</strong> = very comfortable, plus <strong>N/A</strong>. Any <strong>1</strong> may open an optional multi-select of settings (duplicates hidden per option).</p>
     </div>
 
     <div class="decision-block reviewer-only">
       <div class="decision-tag">Decision needed from leadership</div>
       <ol>
-        <li>Which version of Q4 should we adopt — Option A (full matrix), Option B (3 contexts, recommended), or Option C (academic vs. social split)?</li>
-        <li>If A or B, should "online" and "public campus events" stay as separate contexts, or be folded into a broader bucket?</li>
+        <li>Which version of Q4 should we adopt for <strong>production</strong> — <strong>Option D</strong> (4 topics × 1 combined setting, shown in student preview), Option C (16 cells), Option B (24 cells), or Option A (40 cells) for benchmark samples only?</li>
+        <li>If moving beyond D, should “online” and “public campus events” stay as separate contexts, or be folded into a broader bucket?</li>
       </ol>
-      <div class="decision-context">Trade-off centers on respondent burden (40 cells vs. 24 vs. 16) versus analytic richness. Option B mirrors FIRE and Heterodox Academy structure.</div>
+      <div class="decision-context">Option D keeps the construct while avoiding grid fatigue. Options A–B mirror FIRE / Heterodox-style designs when richer topic × setting data are needed.</div>
+      <p class="decision-context" style="margin-top:12px;padding-top:12px;border-top:1px dashed #e8d9a5;"><strong>Choosing a form:</strong> Burden order is <strong>D → C → B → A</strong>. Prefer <strong>D or C</strong> for the senior survey; use <strong>B or A</strong> when you need benchmarking depth. If any cell is <strong>1 (very uncomfortable)</strong>, an optional <strong>multi-select dropdown</strong> lists settings (duplicates of the matrix are hidden per option).</p>
     </div>
 
     <div class="option-switch">
@@ -751,113 +968,56 @@
       </span>
     </div>
 
-    <!-- Option A pane -->
+    <!-- Option A pane — setting dropdown + same matrix shape as D; .q-body filled by populateQ4Matrices() -->
     <div class="option-pane" data-pane="A">
-      <div class="opt-meta-banner"><strong>Option A:</strong> Full matrix — 5 contexts × 8 topics = <strong>40 cells.</strong> Richest data, highest burden.</div>
       <div class="question">
         <div class="q-row"><span class="q-num">4</span><span class="q-text">At UCLA, how comfortable did you feel expressing your views on each of the following topics in each of these settings?</span></div>
-        <div class="q-body">
-          <p style="font-size:13px;color:var(--muted);font-style:italic;margin:0 0 12px;">Scale: 1 = Very uncomfortable → 4 = Very comfortable. N/A available.</p>
-          <p style="font-weight:600;font-size:13px;margin:14px 0 6px;">In class discussions</p>
-          <div class="matrix-wrap"><table class="matrix">
-            <thead><tr><th></th><th><span class="num">1</span>Very<br>uncomf.</th><th><span class="num">2</span>Somewhat<br>uncomf.</th><th><span class="num">3</span>Somewhat<br>comf.</th><th><span class="num">4</span>Very<br>comf.</th><th>N/A</th></tr></thead>
-            <tbody>
-              <tr><th>Race / ethnicity</th><td><input type="radio" name="qA_c1_race"></td><td><input type="radio" name="qA_c1_race"></td><td><input type="radio" name="qA_c1_race"></td><td><input type="radio" name="qA_c1_race"></td><td><input type="radio" name="qA_c1_race"></td></tr>
-              <tr><th>Gender identity</th><td><input type="radio" name="qA_c1_gen"></td><td><input type="radio" name="qA_c1_gen"></td><td><input type="radio" name="qA_c1_gen"></td><td><input type="radio" name="qA_c1_gen"></td><td><input type="radio" name="qA_c1_gen"></td></tr>
-              <tr><th>Sexual orientation</th><td><input type="radio" name="qA_c1_orient"></td><td><input type="radio" name="qA_c1_orient"></td><td><input type="radio" name="qA_c1_orient"></td><td><input type="radio" name="qA_c1_orient"></td><td><input type="radio" name="qA_c1_orient"></td></tr>
-              <tr><th>Socioeconomic</th><td><input type="radio" name="qA_c1_ses"></td><td><input type="radio" name="qA_c1_ses"></td><td><input type="radio" name="qA_c1_ses"></td><td><input type="radio" name="qA_c1_ses"></td><td><input type="radio" name="qA_c1_ses"></td></tr>
-              <tr><th>Political beliefs</th><td><input type="radio" name="qA_c1_pol"></td><td><input type="radio" name="qA_c1_pol"></td><td><input type="radio" name="qA_c1_pol"></td><td><input type="radio" name="qA_c1_pol"></td><td><input type="radio" name="qA_c1_pol"></td></tr>
-              <tr><th>Religious beliefs</th><td><input type="radio" name="qA_c1_rel"></td><td><input type="radio" name="qA_c1_rel"></td><td><input type="radio" name="qA_c1_rel"></td><td><input type="radio" name="qA_c1_rel"></td><td><input type="radio" name="qA_c1_rel"></td></tr>
-              <tr><th>Disability / ability</th><td><input type="radio" name="qA_c1_dis"></td><td><input type="radio" name="qA_c1_dis"></td><td><input type="radio" name="qA_c1_dis"></td><td><input type="radio" name="qA_c1_dis"></td><td><input type="radio" name="qA_c1_dis"></td></tr>
-              <tr><th>Age</th><td><input type="radio" name="qA_c1_age"></td><td><input type="radio" name="qA_c1_age"></td><td><input type="radio" name="qA_c1_age"></td><td><input type="radio" name="qA_c1_age"></td><td><input type="radio" name="qA_c1_age"></td></tr>
-            </tbody></table></div>
-
-          <p style="font-weight:600;font-size:13px;margin:18px 0 6px;">With faculty or instructors outside class</p>
-          <div class="matrix-wrap"><table class="matrix">
-            <thead><tr><th></th><th><span class="num">1</span>Very<br>uncomf.</th><th><span class="num">2</span>Somewhat<br>uncomf.</th><th><span class="num">3</span>Somewhat<br>comf.</th><th><span class="num">4</span>Very<br>comf.</th><th>N/A</th></tr></thead>
-            <tbody>
-              <tr><th>Race / ethnicity</th><td><input type="radio" name="qA_c2_race"></td><td><input type="radio" name="qA_c2_race"></td><td><input type="radio" name="qA_c2_race"></td><td><input type="radio" name="qA_c2_race"></td><td><input type="radio" name="qA_c2_race"></td></tr>
-              <tr><th>Political beliefs</th><td><input type="radio" name="qA_c2_pol"></td><td><input type="radio" name="qA_c2_pol"></td><td><input type="radio" name="qA_c2_pol"></td><td><input type="radio" name="qA_c2_pol"></td><td><input type="radio" name="qA_c2_pol"></td></tr>
-              <tr><th>Religious beliefs</th><td><input type="radio" name="qA_c2_rel"></td><td><input type="radio" name="qA_c2_rel"></td><td><input type="radio" name="qA_c2_rel"></td><td><input type="radio" name="qA_c2_rel"></td><td><input type="radio" name="qA_c2_rel"></td></tr>
-              <tr><td colspan="6" style="text-align:left;font-style:italic;color:var(--muted);font-size:12px;padding:8px 14px;">+ 5 more topics shown to the student in the full survey</td></tr>
-            </tbody></table></div>
-
-          <p style="font-size:12.5px;color:var(--muted);font-style:italic;margin:14px 0 0;">+ 3 more full matrices: with peers/friends · campus events · online. <strong>Student answers ~40 cells across all five.</strong></p>
-        </div>
+        <div class="q-body"></div>
       </div>
     </div>
 
-    <!-- Option B pane -->
+    <!-- Option B pane — setting dropdown + same matrix shape as D; .q-body filled by populateQ4Matrices() -->
     <div class="option-pane active" data-pane="B">
-      <div class="opt-meta-banner"><strong>Option B (recommended):</strong> 3 contexts × 8 topics = <strong>24 cells.</strong> Mirrors FIRE / Heterodox Academy structure.</div>
       <div class="question">
         <div class="q-row"><span class="q-num">4</span><span class="q-text">At UCLA, how comfortable did you feel expressing your views on the following topics in each setting below?</span></div>
-        <div class="q-body">
-          <p style="font-size:13px;color:var(--muted);font-style:italic;margin:0 0 12px;">Scale: 1 = Very uncomfortable → 4 = Very comfortable. N/A available.</p>
-
-          <p style="font-weight:600;font-size:13px;margin:14px 0 6px;">In class or academic settings</p>
-          <div class="matrix-wrap"><table class="matrix">
-            <thead><tr><th></th><th><span class="num">1</span>Very<br>uncomf.</th><th><span class="num">2</span>Somewhat<br>uncomf.</th><th><span class="num">3</span>Somewhat<br>comf.</th><th><span class="num">4</span>Very<br>comf.</th><th>N/A</th></tr></thead>
-            <tbody>
-              <tr><th>Race / ethnicity / national origin</th><td><input type="radio" name="qB_c1_race"></td><td><input type="radio" name="qB_c1_race"></td><td><input type="radio" name="qB_c1_race"></td><td><input type="radio" name="qB_c1_race"></td><td><input type="radio" name="qB_c1_race"></td></tr>
-              <tr><th>Gender identity</th><td><input type="radio" name="qB_c1_gen"></td><td><input type="radio" name="qB_c1_gen"></td><td><input type="radio" name="qB_c1_gen"></td><td><input type="radio" name="qB_c1_gen"></td><td><input type="radio" name="qB_c1_gen"></td></tr>
-              <tr><th>Sexual orientation</th><td><input type="radio" name="qB_c1_orient"></td><td><input type="radio" name="qB_c1_orient"></td><td><input type="radio" name="qB_c1_orient"></td><td><input type="radio" name="qB_c1_orient"></td><td><input type="radio" name="qB_c1_orient"></td></tr>
-              <tr><th>Socioeconomic background</th><td><input type="radio" name="qB_c1_ses"></td><td><input type="radio" name="qB_c1_ses"></td><td><input type="radio" name="qB_c1_ses"></td><td><input type="radio" name="qB_c1_ses"></td><td><input type="radio" name="qB_c1_ses"></td></tr>
-              <tr><th>Political beliefs</th><td><input type="radio" name="qB_c1_pol"></td><td><input type="radio" name="qB_c1_pol"></td><td><input type="radio" name="qB_c1_pol"></td><td><input type="radio" name="qB_c1_pol"></td><td><input type="radio" name="qB_c1_pol"></td></tr>
-              <tr><th>Religious beliefs</th><td><input type="radio" name="qB_c1_rel"></td><td><input type="radio" name="qB_c1_rel"></td><td><input type="radio" name="qB_c1_rel"></td><td><input type="radio" name="qB_c1_rel"></td><td><input type="radio" name="qB_c1_rel"></td></tr>
-              <tr><th>Disability / ability status</th><td><input type="radio" name="qB_c1_dis"></td><td><input type="radio" name="qB_c1_dis"></td><td><input type="radio" name="qB_c1_dis"></td><td><input type="radio" name="qB_c1_dis"></td><td><input type="radio" name="qB_c1_dis"></td></tr>
-              <tr><th>Age</th><td><input type="radio" name="qB_c1_age"></td><td><input type="radio" name="qB_c1_age"></td><td><input type="radio" name="qB_c1_age"></td><td><input type="radio" name="qB_c1_age"></td><td><input type="radio" name="qB_c1_age"></td></tr>
-            </tbody></table></div>
-
-          <p style="font-weight:600;font-size:13px;margin:18px 0 6px;">With peers outside of class</p>
-          <div class="matrix-wrap"><table class="matrix">
-            <thead><tr><th></th><th><span class="num">1</span>Very<br>uncomf.</th><th><span class="num">2</span>Somewhat<br>uncomf.</th><th><span class="num">3</span>Somewhat<br>comf.</th><th><span class="num">4</span>Very<br>comf.</th><th>N/A</th></tr></thead>
-            <tbody>
-              <tr><th>Race / ethnicity / national origin</th><td><input type="radio" name="qB_c2_race"></td><td><input type="radio" name="qB_c2_race"></td><td><input type="radio" name="qB_c2_race"></td><td><input type="radio" name="qB_c2_race"></td><td><input type="radio" name="qB_c2_race"></td></tr>
-              <tr><th>Political beliefs</th><td><input type="radio" name="qB_c2_pol"></td><td><input type="radio" name="qB_c2_pol"></td><td><input type="radio" name="qB_c2_pol"></td><td><input type="radio" name="qB_c2_pol"></td><td><input type="radio" name="qB_c2_pol"></td></tr>
-              <tr><th>Religious beliefs</th><td><input type="radio" name="qB_c2_rel"></td><td><input type="radio" name="qB_c2_rel"></td><td><input type="radio" name="qB_c2_rel"></td><td><input type="radio" name="qB_c2_rel"></td><td><input type="radio" name="qB_c2_rel"></td></tr>
-              <tr><td colspan="6" style="text-align:left;font-style:italic;color:var(--muted);font-size:12px;padding:8px 14px;">+ 5 more topics shown to the student</td></tr>
-            </tbody></table></div>
-
-          <p style="font-weight:600;font-size:13px;margin:18px 0 6px;">With faculty or staff one-on-one</p>
-          <div class="matrix-wrap"><table class="matrix">
-            <thead><tr><th></th><th><span class="num">1</span>Very<br>uncomf.</th><th><span class="num">2</span>Somewhat<br>uncomf.</th><th><span class="num">3</span>Somewhat<br>comf.</th><th><span class="num">4</span>Very<br>comf.</th><th>N/A</th></tr></thead>
-            <tbody>
-              <tr><th>Political beliefs</th><td><input type="radio" name="qB_c3_pol"></td><td><input type="radio" name="qB_c3_pol"></td><td><input type="radio" name="qB_c3_pol"></td><td><input type="radio" name="qB_c3_pol"></td><td><input type="radio" name="qB_c3_pol"></td></tr>
-              <tr><td colspan="6" style="text-align:left;font-style:italic;color:var(--muted);font-size:12px;padding:8px 14px;">+ 7 more topics shown to the student</td></tr>
-            </tbody></table></div>
-        </div>
+        <div class="q-body"></div>
       </div>
     </div>
 
-    <!-- Option C pane -->
+    <!-- Option C — dropdown + D-style table per setting; .q-body filled by populateQ4Matrices() -->
     <div class="option-pane" data-pane="C">
-      <div class="opt-meta-banner"><strong>Option C:</strong> Two split questions — academic vs. social. 2 × 8 topics = <strong>16 cells.</strong> Lightest burden, simplest analysis.</div>
       <div class="question">
-        <div class="q-row"><span class="q-num">4a</span><span class="q-text">At UCLA, how comfortable did you feel expressing your views on the following topics in <strong>academic settings</strong> (classroom discussions, sections, office hours, coursework)?</span></div>
-        <div class="q-body">
-          <div class="matrix-wrap"><table class="matrix">
-            <thead><tr><th></th><th><span class="num">1</span>Very<br>uncomf.</th><th><span class="num">2</span>Somewhat<br>uncomf.</th><th><span class="num">3</span>Somewhat<br>comf.</th><th><span class="num">4</span>Very<br>comf.</th><th>N/A</th></tr></thead>
-            <tbody>
-              <tr><th>Race / ethnicity / national origin</th><td><input type="radio" name="qC_a_race"></td><td><input type="radio" name="qC_a_race"></td><td><input type="radio" name="qC_a_race"></td><td><input type="radio" name="qC_a_race"></td><td><input type="radio" name="qC_a_race"></td></tr>
-              <tr><th>Gender identity</th><td><input type="radio" name="qC_a_gen"></td><td><input type="radio" name="qC_a_gen"></td><td><input type="radio" name="qC_a_gen"></td><td><input type="radio" name="qC_a_gen"></td><td><input type="radio" name="qC_a_gen"></td></tr>
-              <tr><th>Political beliefs</th><td><input type="radio" name="qC_a_pol"></td><td><input type="radio" name="qC_a_pol"></td><td><input type="radio" name="qC_a_pol"></td><td><input type="radio" name="qC_a_pol"></td><td><input type="radio" name="qC_a_pol"></td></tr>
-              <tr><th>Religious beliefs</th><td><input type="radio" name="qC_a_rel"></td><td><input type="radio" name="qC_a_rel"></td><td><input type="radio" name="qC_a_rel"></td><td><input type="radio" name="qC_a_rel"></td><td><input type="radio" name="qC_a_rel"></td></tr>
-              <tr><td colspan="6" style="text-align:left;font-style:italic;color:var(--muted);font-size:12px;padding:8px 14px;">+ 4 more topics</td></tr>
-            </tbody></table></div>
-        </div>
+        <div class="q-row"><span class="q-num">4</span><span class="q-text">At UCLA, for each topic below, how comfortable did you feel expressing your views in <strong>academic settings</strong> (class, sections, office hours, coursework) and in <strong>social settings</strong> (peers, dorms, clubs, campus events)?</span></div>
+        <div class="q-body"></div>
       </div>
+    </div>
+
+    <!-- Option D — student-facing short form (reviewers: 4th card). .q-body filled by populateQ4Matrices() -->
+    <div class="option-pane" data-pane="D">
+      <div class="opt-meta-banner q4-lite-student-note">Shorter form: one combined setting instead of separate tables per place.</div>
       <div class="question">
-        <div class="q-row"><span class="q-num">4b</span><span class="q-text">At UCLA, how comfortable did you feel expressing your views on the following topics in <strong>social settings</strong> (with peers, in dorms, at clubs or campus events)?</span></div>
-        <div class="q-body">
-          <div class="matrix-wrap"><table class="matrix">
-            <thead><tr><th></th><th><span class="num">1</span>Very<br>uncomf.</th><th><span class="num">2</span>Somewhat<br>uncomf.</th><th><span class="num">3</span>Somewhat<br>comf.</th><th><span class="num">4</span>Very<br>comf.</th><th>N/A</th></tr></thead>
-            <tbody>
-              <tr><th>Race / ethnicity / national origin</th><td><input type="radio" name="qC_b_race"></td><td><input type="radio" name="qC_b_race"></td><td><input type="radio" name="qC_b_race"></td><td><input type="radio" name="qC_b_race"></td><td><input type="radio" name="qC_b_race"></td></tr>
-              <tr><th>Political beliefs</th><td><input type="radio" name="qC_b_pol"></td><td><input type="radio" name="qC_b_pol"></td><td><input type="radio" name="qC_b_pol"></td><td><input type="radio" name="qC_b_pol"></td><td><input type="radio" name="qC_b_pol"></td></tr>
-              <tr><td colspan="6" style="text-align:left;font-style:italic;color:var(--muted);font-size:12px;padding:8px 14px;">+ 6 more topics</td></tr>
-            </tbody></table></div>
-        </div>
+        <div class="q-row"><span class="q-num">4</span><span class="q-text">Taking your UCLA experience as a whole, how comfortable did you feel expressing your views on each of the following?</span></div>
+        <div class="q-body"></div>
+      </div>
+    </div>
+
+    <!-- Q4 follow-up: very uncomfortable (1) → optional multi-select settings dropdown -->
+    <div class="conditional" id="conditional-q4-settings" style="display: none;">
+      <div class="cond-tag">Optional — where “very uncomfortable” applied</div>
+      <p style="font-weight:600;font-size:14px;margin:6px 0 10px;line-height:1.4;">You chose <strong>1 (very uncomfortable)</strong> for at least one response. If you want, pick the <strong>setting(s)</strong> below (optional — leave empty to skip).</p>
+      <p id="q4-follow-omit-note" class="q4-follow-omit-note" style="display:none;font-size:13px;color:var(--muted);margin:0 0 10px;line-height:1.45;">Some lines are hidden here because they already appear as separate rows in your table.</p>
+      <p style="font-size:12px;color:var(--muted);margin:0 0 8px;"><strong>Tip:</strong> Use <kbd style="font-size:11px;padding:1px 6px;border:1px solid var(--rule);border-radius:4px;">Ctrl</kbd> or <kbd style="font-size:11px;padding:1px 6px;border:1px solid var(--rule);border-radius:4px;">⌘</kbd> to select more than one.</p>
+      <select id="q4_follow_settings" class="q4-follow-select" name="q4_follow_settings" multiple size="7" aria-label="Settings where you felt very uncomfortable">
+        <option value="class" data-q4-follow-key="class">In class, discussion sections, labs, or other coursework</option>
+        <option value="faculty" data-q4-follow-key="faculty">With faculty or instructors (office hours, advising, email)</option>
+        <option value="peers" data-q4-follow-key="peers">With peers or friends</option>
+        <option value="events" data-q4-follow-key="events">Campus events, rallies, protests, or public campus spaces</option>
+        <option value="online" data-q4-follow-key="online">Online (chats, social media, UCLA platforms)</option>
+        <option value="other" data-q4-follow-key="other">Other (describe in box below)</option>
+      </select>
+      <div class="q4-follow-other-row">
+        <label for="q4_follow_set_other_text">If you chose “Other,” you can add a few words (optional)</label>
+        <input type="text" id="q4_follow_set_other_text" name="q4_follow_set_other_text" placeholder="optional" autocomplete="off">
       </div>
     </div>
 
@@ -866,12 +1026,12 @@
     <div class="options-grid reviewer-only">
       <div class="option-card a review-card" data-opt="A">
         <div class="opt-label">Option A</div>
-        <h4>Full topic × context matrix</h4>
-        <p class="opt-summary"><strong>40 cells</strong> (8 topics × 5 contexts) · ~3–4 min · Richest data, highest burden</p>
+        <h4>Five settings — dropdown + D-style grid</h4>
+        <p class="opt-summary"><strong>40 cells</strong> (8 topics × 5 contexts) · choose setting from menu · same table shape as D · ~3–4 min</p>
         <button class="details-toggle" type="button">Show details ▾</button>
         <div class="details-panel">
           <div class="spec-box">
-            <div><strong>Contexts:</strong> in class · faculty outside class · peers · campus events · online</div>
+            <div><strong>Contexts:</strong> in class · faculty · peers · events · online</div>
             <div><strong>Scale:</strong> 1 → 4 + N/A &nbsp;·&nbsp; <strong>Time:</strong> ~3–4 min</div>
           </div>
           <p class="opt-mini"><span class="detail-label">Analyze:</span> Topic × context interactions; benchmarks directly against FIRE rankings (5-context structure).</p>
@@ -879,9 +1039,9 @@
         </div>
       </div>
       <div class="option-card b review-card selected" data-opt="B">
-        <div class="opt-label">Option B <span class="recommended-pill">recommended</span></div>
-        <h4>Lighter matrix — 3 actionable contexts</h4>
-        <p class="opt-summary"><strong>24 cells</strong> (8 topics × 3 contexts) · ~2 min · Best balance for general survey</p>
+        <div class="opt-label">Option B <span class="recommended-pill">FIRE-style</span></div>
+        <h4>Three settings — dropdown + D-style grid</h4>
+        <p class="opt-summary"><strong>24 cells</strong> (8 topics × 3 contexts) · choose setting from menu · same table shape as D · ~2 min</p>
         <button class="details-toggle" type="button">Show details ▾</button>
         <div class="details-panel">
           <div class="spec-box">
@@ -894,16 +1054,30 @@
       </div>
       <div class="option-card c review-card" data-opt="C">
         <div class="opt-label">Option C</div>
-        <h4>Academic vs. social split</h4>
-        <p class="opt-summary"><strong>16 cells</strong> (8 topics × 2 settings) · ~1.5 min · Simplest, loses granularity</p>
+        <h4>Two settings — dropdown + D-style grid</h4>
+        <p class="opt-summary"><strong>16 cells</strong> (8 topics × 2 settings) · choose setting from menu · same table shape as D · ~1.5 min</p>
         <button class="details-toggle" type="button">Show details ▾</button>
         <div class="details-panel">
           <div class="spec-box">
-            <div><strong>Settings:</strong> academic (class, sections, office hours) · social (peers, dorms, clubs, events)</div>
+            <div><strong>Settings:</strong> academic · social</div>
             <div><strong>Scale:</strong> 1 → 4 + N/A &nbsp;·&nbsp; <strong>Time:</strong> ~1.5 min</div>
           </div>
           <p class="opt-mini"><span class="detail-label">Analyze:</span> Broad academic vs. social only — can't drill into specific contexts within each bucket.</p>
           <p class="opt-mini"><span class="detail-label">Trade-off:</span> Simplest to answer & analyze, but loses within-bucket granularity (large lecture vs. seminar; dorm vs. club).</p>
+        </div>
+      </div>
+      <div class="option-card d review-card" data-opt="D">
+        <div class="opt-label">Option D <span class="recommended-pill">senior survey default</span></div>
+        <h4>Short form — combined setting × 4 topics</h4>
+        <p class="opt-summary"><strong>4 cells</strong> (4 topics × 1 combined context) + N/A · ~30 sec · What students see in preview</p>
+        <button class="details-toggle" type="button">Show details ▾</button>
+        <div class="details-panel">
+          <div class="spec-box">
+            <div><strong>Form:</strong> one combined setting × 4 topics (student preview default)</div>
+            <div><strong>Scale:</strong> 1 → 4 + N/A &nbsp;·&nbsp; <strong>Time:</strong> ~30–45 sec</div>
+          </div>
+          <p class="opt-mini"><span class="detail-label">Analyze:</span> Priority topics without full topic×setting grid.</p>
+          <p class="opt-mini"><span class="detail-label">Trade-off:</span> Loses granular benchmarking vs. FIRE five-context structure; pair with Q5–Q6 for peer climate.</p>
         </div>
       </div>
     </div>
@@ -917,7 +1091,7 @@
   <!-- ============ PAGE 4 — Section 4 (Q5, Q6) ============ -->
   <section class="page" data-page="4">
     <div class="page-header">
-      <div class="section-tag">Section 4 of 7</div>
+      <div class="section-tag">Section 4 of 6</div>
       <h2 class="page-title">Campus climate</h2>
       <p class="page-sub">Your sense of the peer environment at UCLA.</p>
     </div>
@@ -998,7 +1172,7 @@
   <!-- ============ PAGE 5 — Section 5 (Q7 + follow-ups) ============ -->
   <section class="page" data-page="5">
     <div class="page-header">
-      <div class="section-tag">Section 5 of 7</div>
+      <div class="section-tag">Section 5 of 6</div>
       <h2 class="page-title">Bias, harassment, or discrimination</h2>
       <p class="page-sub">Your experiences and observations at UCLA.</p>
     </div>
@@ -1011,7 +1185,7 @@
           <label><input type="radio" name="q7" value="experienced"><span>Experienced</span></label>
           <label><input type="radio" name="q7" value="observed"><span>Observed</span></label>
           <label><input type="radio" name="q7" value="both"><span>Both experienced and observed</span></label>
-          <label><input type="radio" name="q7" value="neither"><span>Neither <em style="color:var(--muted);font-size:12px;">(you can skip to Section 6)</em></span></label>
+          <label><input type="radio" name="q7" value="neither"><span>Neither <em style="color:var(--muted);font-size:12px;">(you can skip the follow-up questions below)</em></span></label>
         </div>
       </div>
 
@@ -1080,50 +1254,10 @@
     </div>
   </section>
 
-  <!-- ============ PAGE 6 — Section 6 ============ -->
+  <!-- ============ PAGE 6 — Section 6 (Q10–Q11) ============ -->
   <section class="page" data-page="6">
     <div class="page-header">
-      <div class="section-tag">Section 6 of 7</div>
-      <h2 class="page-title">Reporting and institutional response</h2>
-      <p class="page-sub">If something occurred, what happened next?</p>
-    </div>
-
-    <div class="question">
-      <div class="q-row"><span class="q-num">8</span><span class="q-text">If you experienced or observed bias, harassment, or discrimination, did you report it to a UCLA office or official?</span></div>
-      <div class="q-body">
-        <div class="opt-list">
-          <label><input type="radio" name="q8"><span>Yes</span></label>
-          <label><input type="radio" name="q8"><span>No — I was not aware of reporting options</span></label>
-          <label><input type="radio" name="q8"><span>No — I did not think it would be addressed</span></label>
-          <label><input type="radio" name="q8"><span>No — other reason</span></label>
-          <label><input type="radio" name="q8"><span>Does not apply</span></label>
-        </div>
-      </div>
-    </div>
-
-    <div class="question">
-      <div class="q-row"><span class="q-num">9</span><span class="q-text">If you made a report, how satisfied were you with how UCLA responded?</span></div>
-      <div class="q-body">
-        <div class="scale scale-5">
-          <label><input type="radio" name="q9"><span class="num">1</span><span class="lbl">Very dissatisfied</span></label>
-          <label><input type="radio" name="q9"><span class="num">2</span><span class="lbl">Dissatisfied</span></label>
-          <label><input type="radio" name="q9"><span class="num">3</span><span class="lbl">Satisfied</span></label>
-          <label><input type="radio" name="q9"><span class="num">4</span><span class="lbl">Very satisfied</span></label>
-          <label><input type="radio" name="q9"><span class="num">N/A</span><span class="lbl">Does not apply</span></label>
-        </div>
-      </div>
-    </div>
-
-    <div class="nav-row">
-      <button class="nav-btn btn-secondary" onclick="prev()">← Back</button>
-      <button class="nav-btn btn-primary" onclick="next()">Next →</button>
-    </div>
-  </section>
-
-  <!-- ============ PAGE 7 — Section 7 ============ -->
-  <section class="page" data-page="7">
-    <div class="page-header">
-      <div class="section-tag">Section 7 of 7</div>
+      <div class="section-tag">Section 6 of 6</div>
       <h2 class="page-title">Sharing your views</h2>
       <p class="page-sub">How often you held back from sharing your views.</p>
     </div>
@@ -1131,9 +1265,9 @@
     <div class="decision-block reviewer-only">
       <div class="decision-tag">Decision needed from leadership</div>
       <ol>
-        <li>Add political ideology and religious affiliation as end-of-survey demographic items (D15–D18)?</li>
+        <li>If subgroup analysis of Q10–Q11 is required, where will political or religious background be measured (main survey module omitted here vs. admin data vs. separate instrument)?</li>
       </ol>
-      <div class="decision-context">Without these, Q10 and Q11 produce uninterpretable headline numbers — we cannot say which students self-censor, only that some do. Adding them is convention across FIRE, Heterodox Academy CES, and HERI DLE. Placement at the end of the survey (not adjacent to Q10/Q11) avoids priming effects.</div>
+      <div class="decision-context">This draft omits end-of-survey political and religious background items; headline rates on Q10–Q11 cannot be broken out by subgroup without another data source. Many external instruments pair self-censorship items with late-placement demographics to avoid priming.</div>
     </div>
 
     <div class="question">
@@ -1166,94 +1300,8 @@
     </div>
   </section>
 
-  <!-- ============ PAGE 8 — Demographics ============ -->
-  <section class="page" data-page="8">
-    <div class="page-header">
-      <div class="section-tag">A few last questions</div>
-      <h2 class="page-title">About you</h2>
-      <p class="page-sub">These help us understand differences across the UCLA community. All optional.</p>
-    </div>
-
-    <div class="question">
-      <div class="q-row"><span class="q-num">D15</span><span class="q-text">Politically, where would you place yourself?</span></div>
-      <div class="q-body">
-        <div class="opt-list">
-          <label><input type="radio" name="d15"><span>Very liberal / progressive</span></label>
-          <label><input type="radio" name="d15"><span>Liberal / progressive</span></label>
-          <label><input type="radio" name="d15"><span>Slightly liberal</span></label>
-          <label><input type="radio" name="d15"><span>Moderate / middle of the road</span></label>
-          <label><input type="radio" name="d15"><span>Slightly conservative</span></label>
-          <label><input type="radio" name="d15"><span>Conservative</span></label>
-          <label><input type="radio" name="d15"><span>Very conservative</span></label>
-          <label><input type="radio" name="d15"><span>Libertarian</span></label>
-          <label><input type="radio" name="d15"><span>Other:</span><input type="text" class="other-input" placeholder="please specify"></label>
-          <label><input type="radio" name="d15"><span>I don't think about politics in these terms</span></label>
-          <label><input type="radio" name="d15"><span>Prefer not to answer</span></label>
-        </div>
-      </div>
-    </div>
-
-    <div class="question">
-      <div class="q-row"><span class="q-num">D16</span><span class="q-text">Which best describes your political party affiliation?</span></div>
-      <div class="q-body">
-        <div class="opt-list">
-          <label><input type="radio" name="d16"><span>Democrat</span></label>
-          <label><input type="radio" name="d16"><span>Republican</span></label>
-          <label><input type="radio" name="d16"><span>Independent</span></label>
-          <label><input type="radio" name="d16"><span>Green Party</span></label>
-          <label><input type="radio" name="d16"><span>Libertarian Party</span></label>
-          <label><input type="radio" name="d16"><span>Other:</span><input type="text" class="other-input" placeholder="please specify"></label>
-          <label><input type="radio" name="d16"><span>None / not registered</span></label>
-          <label><input type="radio" name="d16"><span>Prefer not to answer</span></label>
-        </div>
-      </div>
-    </div>
-
-    <div class="question">
-      <div class="q-row"><span class="q-num">D17</span><span class="q-text">What is your religious affiliation, if any?</span></div>
-      <div class="q-body">
-        <div class="opt-list">
-          <label><input type="radio" name="d17"><span>Christian — Protestant</span></label>
-          <label><input type="radio" name="d17"><span>Christian — Catholic</span></label>
-          <label><input type="radio" name="d17"><span>Christian — Mormon / Latter-day Saints</span></label>
-          <label><input type="radio" name="d17"><span>Christian — Orthodox</span></label>
-          <label><input type="radio" name="d17"><span>Christian — Other</span></label>
-          <label><input type="radio" name="d17"><span>Jewish</span></label>
-          <label><input type="radio" name="d17"><span>Muslim</span></label>
-          <label><input type="radio" name="d17"><span>Hindu</span></label>
-          <label><input type="radio" name="d17"><span>Buddhist</span></label>
-          <label><input type="radio" name="d17"><span>Sikh</span></label>
-          <label><input type="radio" name="d17"><span>Atheist</span></label>
-          <label><input type="radio" name="d17"><span>Agnostic</span></label>
-          <label><input type="radio" name="d17"><span>Spiritual but not religious</span></label>
-          <label><input type="radio" name="d17"><span>No religion</span></label>
-          <label><input type="radio" name="d17"><span>Other:</span><input type="text" class="other-input" placeholder="please specify"></label>
-          <label><input type="radio" name="d17"><span>Prefer not to answer</span></label>
-        </div>
-      </div>
-    </div>
-
-    <div class="question">
-      <div class="q-row"><span class="q-num">D18</span><span class="q-text">How important is religion or spirituality in your daily life?</span></div>
-      <div class="q-body">
-        <div class="scale scale-5">
-          <label><input type="radio" name="d18"><span class="num">1</span><span class="lbl">Not at all important</span></label>
-          <label><input type="radio" name="d18"><span class="num">2</span><span class="lbl">Not very important</span></label>
-          <label><input type="radio" name="d18"><span class="num">3</span><span class="lbl">Somewhat important</span></label>
-          <label><input type="radio" name="d18"><span class="num">4</span><span class="lbl">Very important</span></label>
-          <label><input type="radio" name="d18"><span class="num">—</span><span class="lbl">Prefer not to answer</span></label>
-        </div>
-      </div>
-    </div>
-
-    <div class="nav-row">
-      <button class="nav-btn btn-secondary" onclick="prev()">← Back</button>
-      <button class="nav-btn btn-primary" onclick="next()">Next →</button>
-    </div>
-  </section>
-
-  <!-- ============ PAGE 9 — Open response ============ -->
-  <section class="page" data-page="9">
+  <!-- ============ PAGE 7 — Open response ============ -->
+  <section class="page" data-page="7">
     <div class="page-header">
       <div class="section-tag">Final question</div>
       <h2 class="page-title">Anything else?</h2>
@@ -1273,8 +1321,8 @@
     </div>
   </section>
 
-  <!-- ============ PAGE 10 — Thank you ============ -->
-  <section class="page" data-page="10">
+  <!-- ============ PAGE 8 — Thank you ============ -->
+  <section class="page" data-page="8">
     <div class="thanks">
       <div class="check">✓</div>
       <h2>Thank you for completing the survey.</h2>
@@ -1328,6 +1376,27 @@
 </div>
 
 <script>
+  // ===== Text size (A− / A / A+) — persists in localStorage =====
+  (function initTextSize() {
+    const KEY = 'uclaClimateDraftTextSize';
+    const sizes = ['small', 'medium', 'large'];
+    function apply(size) {
+      const s = sizes.includes(size) ? size : 'medium';
+      document.body.classList.remove('text-size-small', 'text-size-medium', 'text-size-large');
+      document.body.classList.add('text-size-' + s);
+      document.querySelectorAll('.text-size-switch button[data-text-size]').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-text-size') === s);
+      });
+      try { localStorage.setItem(KEY, s); } catch (_) {}
+    }
+    let saved = 'medium';
+    try { saved = localStorage.getItem(KEY) || 'medium'; } catch (_) {}
+    apply(saved);
+    document.querySelectorAll('.text-size-switch button[data-text-size]').forEach(btn => {
+      btn.addEventListener('click', () => apply(btn.getAttribute('data-text-size')));
+    });
+  })();
+
   // ===== Pagination =====
   const pages = document.querySelectorAll('.page');
   const totalPages = pages.length; // includes welcome (0) and thanks (last)
@@ -1362,11 +1431,13 @@
     studentBtn.classList.add('active');
     reviewerBtn.classList.remove('active');
     showPage(currentPage);
+    syncQ4ForSurveyMode();
   });
   reviewerBtn.addEventListener('click', () => {
     document.body.classList.add('reviewer-mode');
     reviewerBtn.classList.add('active');
     studentBtn.classList.remove('active');
+    syncQ4ForSurveyMode();
   });
 
   // ===== Reorder Q4: place comparison cards (options) before option-panes (items) =====
@@ -1380,7 +1451,7 @@
     if (grid) parent.insertBefore(grid, optionSwitch);
   })();
 
-  // ===== Generate full Q4 option matrices (A, B, C) dynamically =====
+  // ===== Generate full Q4 option matrices (A–D) dynamically =====
   (function populateQ4Matrices() {
     const TOPICS = [
       ['race',   'Race / ethnicity / national origin'],
@@ -1392,28 +1463,50 @@
       ['dis',    'Disability / ability status'],
       ['age',    'Age']
     ];
-    const SCALE_HEAD = `<thead><tr>
-      <th></th>
-      <th><span class="num">1</span>Very<br>uncomf.</th>
-      <th><span class="num">2</span>Somewhat<br>uncomf.</th>
-      <th><span class="num">3</span>Somewhat<br>comf.</th>
-      <th><span class="num">4</span>Very<br>comf.</th>
-      <th>N/A</th>
-    </tr></thead>`;
-    const SCALE_NOTE = `<p style="font-size:13px;color:var(--muted);font-style:italic;margin:0 0 12px;">Scale: 1 = Very uncomfortable → 4 = Very comfortable. N/A available.</p>`;
+    const TOPICS_LITE = [
+      ['race', 'Race / ethnicity / national origin'],
+      ['pol', 'Political beliefs'],
+      ['rel', 'Religious beliefs'],
+      ['identity_other', 'Other aspects of identity or background (e.g., gender, disability, sexual orientation)']
+    ];
+    const SCALE_HEAD_ROW = `<tr>
+      <th scope="col">Topic</th>
+      <th scope="col"><span class="num">1</span>Very<br>uncomf.</th>
+      <th scope="col"><span class="num">2</span>Somewhat<br>uncomf.</th>
+      <th scope="col"><span class="num">3</span>Somewhat<br>comf.</th>
+      <th scope="col"><span class="num">4</span>Very<br>comf.</th>
+      <th scope="col">N/A</th>
+    </tr>`;
 
-    function matrixBody(prefix) {
-      return TOPICS.map(([k, label]) =>
-        `<tr><th>${label}</th>` +
-        Array(5).fill(0).map(() => `<td><input type="radio" name="${prefix}_${k}"></td>`).join('') +
-        `</tr>`
+    /** Option D shape: topics × one 1–4 + N/A block (one setting prefix). */
+    function matrixForPrefix(prefix, topics) {
+      let body = '';
+      for (const [k, label] of topics) {
+        body += `<tr><th scope="row">${label}</th>` +
+          Array(5).fill(0).map(() => `<td><input type="radio" name="${prefix}_${k}"></td>`).join('') +
+          `</tr>`;
+      }
+      return `<div class="matrix-wrap"><table class="matrix"><thead>${SCALE_HEAD_ROW}</thead><tbody>${body}</tbody></table></div>`;
+    }
+
+    /** Options A–C: same table as D; user picks setting from dropdown (stacks one matrix per setting). */
+    function dropdownContextMatrix(paneLetter, contexts, topics) {
+      const selectId = `q4_setting_select_${paneLetter}`;
+      const opts = contexts.map(([, label], i) => `<option value="${i}">${label}</option>`).join('');
+      const sheets = contexts.map(([prefix], i) =>
+        `<div class="q4-matrix-sheet" data-sheet-index="${i}"` + (i === 0 ? '>' : ' hidden>') +
+        `${matrixForPrefix(prefix, topics)}</div>`
       ).join('');
-    }
-    function matrixOnly(prefix) {
-      return `<div class="matrix-wrap"><table class="matrix">${SCALE_HEAD}<tbody>${matrixBody(prefix)}</tbody></table></div>`;
-    }
-    function contextMatrix(prefix, contextLabel) {
-      return `<p class="ctx-label">${contextLabel}</p>` + matrixOnly(prefix);
+      return `
+    <div class="q4-dropdown-matrix" data-pane-letter="${paneLetter}">
+      <div class="q4-setting-row">
+        <label for="${selectId}">Setting</label>
+        <select id="${selectId}" class="q4-context-select" aria-label="Setting for the ratings below">
+          ${opts}
+        </select>
+      </div>
+      <div class="q4-matrix-sheets">${sheets}</div>
+    </div>`;
     }
 
     const OPTION_A = [
@@ -1428,29 +1521,24 @@
       ['qB_c2', 'With peers outside of class'],
       ['qB_c3', 'With faculty or staff one-on-one']
     ];
+    const OPTION_C = [
+      ['qC_a', 'Academic settings (class, sections, office hours, coursework)'],
+      ['qC_b', 'Social settings (peers, dorms, clubs, campus events)']
+    ];
 
-    // Option A: replace q-body with all 5 matrices
     const paneA = document.querySelector('.option-pane[data-pane="A"] .q-body');
-    if (paneA) {
-      paneA.innerHTML = SCALE_NOTE + OPTION_A.map(([p, l]) => contextMatrix(p, l)).join('');
-    }
-    // Option B: replace q-body with all 3 matrices
+    if (paneA) paneA.innerHTML = dropdownContextMatrix('A', OPTION_A, TOPICS);
     const paneB = document.querySelector('.option-pane[data-pane="B"] .q-body');
-    if (paneB) {
-      paneB.innerHTML = SCALE_NOTE + OPTION_B.map(([p, l]) => contextMatrix(p, l)).join('');
-    }
-    // Option C: two separate questions (Q4a + Q4b), one matrix each, full 8 topics
-    const paneC = document.querySelector('.option-pane[data-pane="C"]');
-    if (paneC) {
-      const cBodies = paneC.querySelectorAll('.q-body');
-      if (cBodies[0]) cBodies[0].innerHTML = SCALE_NOTE + matrixOnly('qC_a');
-      if (cBodies[1]) cBodies[1].innerHTML = SCALE_NOTE + matrixOnly('qC_b');
-    }
+    if (paneB) paneB.innerHTML = dropdownContextMatrix('B', OPTION_B, TOPICS);
+    const paneD = document.querySelector('.option-pane[data-pane="D"] .q-body');
+    if (paneD) paneD.innerHTML = matrixForPrefix('q4_lite', TOPICS_LITE);
+    const paneC = document.querySelector('.option-pane[data-pane="C"] .q-body');
+    if (paneC) paneC.innerHTML = dropdownContextMatrix('C', OPTION_C, TOPICS);
   })();
 
   // ===== Q4 option switcher (works for both student tabs and reviewer cards) =====
   function selectOption(opt) {
-    // Update student-mode tabs
+    // Update student-mode tabs (Options A–C only; D is used in short student path)
     document.querySelectorAll('.opt-tab').forEach(b => b.classList.remove('active'));
     const tab = document.querySelector(`.opt-tab[data-opt="${opt}"]`);
     if (tab) tab.classList.add('active');
@@ -1462,6 +1550,23 @@
     document.querySelectorAll('.option-pane').forEach(p => p.classList.remove('active'));
     const pane = document.querySelector(`.option-pane[data-pane="${opt}"]`);
     if (pane) pane.classList.add('active');
+    updateQ4SettingsFollowup();
+  }
+
+  function syncQ4ForSurveyMode() {
+    const reviewer = document.body.classList.contains('reviewer-mode');
+    if (!reviewer) {
+      document.querySelectorAll('.option-pane').forEach(p => p.classList.remove('active'));
+      const d = document.querySelector('.option-pane[data-pane="D"]');
+      if (d) d.classList.add('active');
+      updateQ4SettingsFollowup();
+      return;
+    }
+    const sel =
+      document.querySelector('.review-card.selected')?.getAttribute('data-opt') ||
+      document.querySelector('.opt-tab.active')?.getAttribute('data-opt') ||
+      'B';
+    selectOption(sel);
   }
   document.querySelectorAll('.opt-tab').forEach(btn => {
     btn.addEventListener('click', () => selectOption(btn.dataset.opt));
@@ -1507,6 +1612,93 @@
   }
   q7Inputs.forEach(inp => inp.addEventListener('change', update7Conditional));
   update7Conditional();
+
+  // ===== Q4 optional “where”: only when at least one cell is 1 (very uncomfortable) =====
+  function q4FollowHiddenKeys(paneLetter) {
+    const hide = new Set();
+    switch (paneLetter) {
+      case 'A':
+        ['class', 'faculty', 'peers', 'events', 'online'].forEach(k => hide.add(k));
+        break;
+      case 'B':
+        ['class', 'faculty', 'peers'].forEach(k => hide.add(k));
+        break;
+      case 'C':
+        ['class', 'faculty', 'peers', 'events'].forEach(k => hide.add(k));
+        break;
+      case 'D':
+      default:
+        break;
+    }
+    return hide;
+  }
+  function anyVeryUncomfortableInActiveQ4Matrix() {
+    const pane = document.querySelector('.option-pane.active');
+    if (!pane) return false;
+    const checked = pane.querySelectorAll('table.matrix input[type="radio"]:checked');
+    for (const el of checked) {
+      const td = el.closest('td');
+      if (!td) continue;
+      if (td.cellIndex === 1) return true;
+    }
+    return false;
+  }
+  function updateQ4SettingsFollowup() {
+    const box = document.getElementById('conditional-q4-settings');
+    if (!box) return;
+    const paneEl = document.querySelector('.option-pane.active');
+    const paneLetter = paneEl?.getAttribute('data-pane') || 'D';
+    const hidden = q4FollowHiddenKeys(paneLetter);
+
+    const note = document.getElementById('q4-follow-omit-note');
+    if (note) note.style.display = hidden.size > 0 ? 'block' : 'none';
+
+    let visibleCount = 0;
+    const sel = box.querySelector('#q4_follow_settings');
+    if (sel) {
+      sel.querySelectorAll('option[data-q4-follow-key]').forEach(opt => {
+        const key = opt.getAttribute('data-q4-follow-key');
+        const shouldHide = hidden.has(key);
+        opt.disabled = shouldHide;
+        if (shouldHide) opt.selected = false;
+        else visibleCount++;
+      });
+    }
+
+    const veryUncomfortable = anyVeryUncomfortableInActiveQ4Matrix();
+    const showBox = veryUncomfortable && visibleCount > 0;
+    box.style.display = showBox ? 'block' : 'none';
+
+    if (!showBox) {
+      if (sel) {
+        sel.querySelectorAll('option').forEach(o => { o.selected = false; });
+      }
+      const ot = box.querySelector('#q4_follow_set_other_text');
+      if (ot) ot.value = '';
+    }
+  }
+  document.body.addEventListener('change', (e) => {
+    const t = e.target;
+    if (t && t.matches && t.matches('select.q4-context-select')) {
+      const wrap = t.closest('.q4-dropdown-matrix');
+      if (wrap) {
+        const idx = parseInt(t.value, 10);
+        wrap.querySelectorAll('.q4-matrix-sheet').forEach((sheet, i) => {
+          if (i === idx) sheet.removeAttribute('hidden');
+          else sheet.setAttribute('hidden', '');
+        });
+      }
+      updateQ4SettingsFollowup();
+      return;
+    }
+    if (!t || !t.matches || !t.matches('input[type="radio"]')) return;
+    if (t.closest('.option-pane.active table.matrix')) {
+      updateQ4SettingsFollowup();
+    }
+  });
+  updateQ4SettingsFollowup();
+
+  syncQ4ForSurveyMode();
 </script>
 </body>
 </html>
