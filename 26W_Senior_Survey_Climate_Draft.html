@@ -239,37 +239,7 @@
   table.matrix-expr-unified tbody tr.expr-context-banner:hover th {
     background: #ddeaf4;
   }
-  /* Q4 Options A–C: same table shape as D; pick setting from dropdown */
-  .q4-dropdown-matrix { margin: 0; }
-  .q4-setting-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 14px;
-  }
-  .q4-setting-row label {
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--ink);
-  }
-  .q4-context-select {
-    font: inherit;
-    font-size: 14px;
-    padding: 8px 12px;
-    border-radius: 8px;
-    border: 1px solid var(--rule);
-    min-width: min(100%, 32rem);
-    max-width: 100%;
-    background: #fff;
-    cursor: pointer;
-    color: var(--ink);
-  }
-  .q4-context-select:focus {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-  .q4-matrix-sheets .q4-matrix-sheet[hidden] { display: none !important; }
+  /* Q4: single table for A–C (no stacked blocks) */
 
   /* Option list */
   .opt-list { display: flex; flex-direction: column; gap: 6px; }
@@ -294,25 +264,50 @@
     border-left: 3px solid var(--accent); background: #f7fbfd; border-radius: 0 8px 8px 0; }
   .cond-tag { font-size: 11px; color: var(--accent-2); font-weight: 700;
     letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
-  select.q4-follow-select {
-    width: 100%;
-    max-width: 520px;
-    font-family: inherit;
-    font-size: 13.5px;
-    padding: 10px 12px;
-    border: 1px solid var(--rule);
-    border-radius: 8px;
-    background: #fff;
-    color: var(--ink);
-    min-height: 140px;
+  #conditional-q4-settings .cond-tag { font-size: 12.5px; }
+  #q4-follow-lead { font-size: 16px !important; line-height: 1.45; }
+  .q4-follow-checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 640px;
+    margin-top: 4px;
   }
-  select.q4-follow-select option { padding: 6px 4px; }
-  select.q4-follow-select option:disabled { color: var(--soft); }
-  .q4-follow-other-row { margin-top: 12px; max-width: 520px; }
-  .q4-follow-other-row label { font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px; }
+  .q4-follow-cb-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1.45;
+    color: var(--ink);
+    transition: background 0.1s, border-color 0.1s;
+  }
+  .q4-follow-cb-item:hover { background: var(--accent-soft); border-color: var(--accent); }
+  .q4-follow-cb-item:has(input:checked) {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    box-shadow: inset 0 0 0 1px var(--accent);
+  }
+  .q4-follow-cb-item input[type="checkbox"] {
+    margin-top: 3px;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+  .q4-follow-cb-item span { flex: 1; }
+  .q4-follow-tip { font-size: 14px; color: var(--muted); margin: 0 0 10px; line-height: 1.45; }
+  .q4-follow-other-row { margin-top: 16px; max-width: 640px; }
+  .q4-follow-other-row label { font-size: 15px; color: var(--muted); display: block; margin-bottom: 8px; }
   .q4-follow-other-row input[type="text"] {
-    width: 100%; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 8px;
-    font-family: inherit; font-size: 14px;
+    width: 100%; padding: 12px 14px; border: 1px solid var(--rule); border-radius: 8px;
+    font-family: inherit; font-size: 16px;
   }
 
   /* Q4 option preview switcher (student mode) */
@@ -776,15 +771,15 @@
       <ul>
         <li><strong>Sec 1 (Q1–2):</strong> headline belonging and respect</li>
         <li><strong>Sec 2 (Q3):</strong> UCLA support for diversity by identity dimension (matrix aligned with HERI-style institutional climate)</li>
-        <li><strong>Sec 3 (Q4):</strong> comfort expressing views — <strong>student preview uses Option D</strong> (4 topics × one combined setting); in reviewer mode, <strong>A–C use a setting dropdown</strong> with the <strong>same table layout as D</strong> per setting.</li>
+        <li><strong>Sec 3 (Q4):</strong> one topic grid; if <strong>1 or 2</strong>, optional multi-select of <strong>that option’s settings</strong> (D uses a short topic list + broad follow-up places).</li>
         <li><strong>Sec 4 (Q5–6):</strong> dialogue climate and peer treatment of identity / viewpoint groups</li>
         <li><strong>Sec 5 (Q7+):</strong> experienced or observed bias or discrimination, with follow-ups</li>
         <li><strong>Sec 6 (Q10–11):</strong> self-censorship on politics and religion</li>
         <li><strong>Q12:</strong> optional open narrative</li>
       </ul>
       <h5>Section 3 (Expression climate / Q4) — it is a lot; how to streamline</h5>
-      <p><strong>Student preview</strong> uses <strong>Option D</strong> — one combined context × <strong>four</strong> priority topics. <strong>Reviewer mode</strong> adds A–C: respondents choose each setting from a <strong>menu</strong> and see the same compact topic × scale grid as D (not a wide multi-column table).</p>
-      <p>Even <strong>Option B</strong> is <strong>24 cells</strong> (8 topics × 3 contexts); Option A is <strong>40 cells</strong>. Practical ways to lighten burden <em>without</em> dropping the construct:</p>
+      <p><strong>Student preview</strong> is <strong>Option D</strong> (4 topics). <strong>A–C</strong> use <strong>one</strong> 8-topic comfort grid; a <strong>1 or 2</strong> triggers an optional multi-select of that version’s own setting labels (no repeated matrices).</p>
+      <p>Even <strong>Option B</strong> is now <strong>8 topic ratings</strong> plus an optional multi-select of <strong>3</strong> settings after any <strong>1–2</strong>; Option A uses <strong>5</strong> such settings. Practical ways to lighten burden <em>without</em> dropping the construct:</p>
       <ul>
         <li><strong>Ship Option D (or C)</strong> in production for the senior survey; reserve A or B for pilots, alternate years, or deep-dive samples.</li>
         <li><strong>Fewer topic rows</strong> in production (e.g. retain race, religion, politics, and one “other sensitive” bucket) if analysts pre-specify which contrasts matter for UCLA reporting.</li>
@@ -825,8 +820,8 @@
           <td class="num">3</td>
           <td class="section-name"><strong>Expression Climate</strong></td>
           <td class="section-items">Q4</td>
-          <td>Comfort expressing views; optional multi-select <strong>where</strong> dropdown if any response is <strong>1</strong> (very uncomfortable)</td>
-          <td class="decision">Adopt D for production vs. B/C for more cells? Keep A for benchmarking samples?</td>
+          <td>Comfort per topic (one grid); optional <strong>where</strong> multi-select after <strong>1 or 2</strong> (option-specific settings for A–C; broader list for D)</td>
+          <td class="decision">Adopt D vs. B/C/A (8 topics + option-specific follow-up settings after 1–2)?</td>
         </tr>
         <tr>
           <td class="num">4</td>
@@ -981,17 +976,17 @@
       <div class="section-tag">Section 3 of 6</div>
       <h2 class="page-title">Expression climate</h2>
       <p class="page-sub">How comfortable did you feel sharing your views on different topics?</p>
-      <p class="stem-note q4-shared-scale">Use the <strong>setting</strong> menu where shown (Options A–C); the table matches Option D: one row per topic and columns <strong>1</strong> = very uncomfortable … <strong>4</strong> = very comfortable, plus <strong>N/A</strong>. Any <strong>1</strong> may open an optional multi-select of settings (duplicates hidden per option).</p>
+      <p class="stem-note q4-shared-scale"><strong>A–C:</strong> one row per topic, scale <strong>1</strong>–<strong>4</strong> + <strong>N/A</strong>. If you choose <strong>1 or 2</strong> for any topic, optional <strong>checkboxes</strong> list <strong>this version’s settings</strong>. <strong>D:</strong> shorter topic list; same 1–2 rule; broader “where” checklist. All optional.</p>
     </div>
 
     <div class="decision-block reviewer-only">
       <div class="decision-tag">Decision needed from leadership</div>
       <ol>
-        <li>Which version of Q4 should we adopt for <strong>production</strong> — <strong>Option D</strong> (4 topics × 1 combined setting, shown in student preview), Option C (16 cells), Option B (24 cells), or Option A (40 cells) for benchmark samples only?</li>
+        <li>Which version of Q4 should we adopt for <strong>production</strong> — <strong>Option D</strong> (4 topics + broad follow-up; student preview), Option C (<strong>8</strong> topics + <strong>2</strong> setting choices if 1–2), Option B (<strong>8</strong> + <strong>3</strong>), or Option A (<strong>8</strong> + <strong>5</strong>) for benchmark samples?</li>
         <li>If moving beyond D, should “online” and “public campus events” stay as separate contexts, or be folded into a broader bucket?</li>
       </ol>
       <div class="decision-context">Option D keeps the construct while avoiding grid fatigue. Options A–B mirror FIRE / Heterodox-style designs when richer topic × setting data are needed.</div>
-      <p class="decision-context" style="margin-top:12px;padding-top:12px;border-top:1px dashed #e8d9a5;"><strong>Choosing a form:</strong> Burden order is <strong>D → C → B → A</strong>. Prefer <strong>D or C</strong> for the senior survey; use <strong>B or A</strong> when you need benchmarking depth. If any cell is <strong>1 (very uncomfortable)</strong>, an optional <strong>multi-select dropdown</strong> lists settings (duplicates of the matrix are hidden per option).</p>
+      <p class="decision-context" style="margin-top:12px;padding-top:12px;border-top:1px dashed #e8d9a5;"><strong>Choosing a form:</strong> Burden order is <strong>D → C → B → A</strong>. After any <strong>1 or 2</strong>, optional multi-select: <strong>A–C</strong> use that option’s own setting labels; <strong>D</strong> uses a broader place list.</p>
     </div>
 
     <div class="option-switch">
@@ -1003,26 +998,26 @@
       </span>
     </div>
 
-    <!-- Option A pane — setting dropdown + same matrix shape as D; .q-body filled by populateQ4Matrices() -->
+    <!-- Option A pane — one topic grid; follow-up lists this option’s settings -->
     <div class="option-pane" data-pane="A">
       <div class="question">
-        <div class="q-row"><span class="q-num">4</span><span class="q-text">At UCLA, how comfortable did you feel expressing your views on each of the following topics in each of these settings?</span></div>
+        <div class="q-row"><span class="q-num">4</span><span class="q-text">Overall at UCLA, how comfortable did you feel expressing your views on each of the following topics? (If you answer 1 or 2 on any row, you can indicate which settings applied in the optional list below.)</span></div>
         <div class="q-body"></div>
       </div>
     </div>
 
-    <!-- Option B pane — setting dropdown + same matrix shape as D; .q-body filled by populateQ4Matrices() -->
+    <!-- Option B pane — one topic grid; follow-up lists this option’s settings -->
     <div class="option-pane active" data-pane="B">
       <div class="question">
-        <div class="q-row"><span class="q-num">4</span><span class="q-text">At UCLA, how comfortable did you feel expressing your views on the following topics in each setting below?</span></div>
+        <div class="q-row"><span class="q-num">4</span><span class="q-text">Overall at UCLA, how comfortable did you feel expressing your views on each of the following topics? (If you answer 1 or 2 on any row, you can indicate which settings applied in the optional list below.)</span></div>
         <div class="q-body"></div>
       </div>
     </div>
 
-    <!-- Option C — dropdown + D-style table per setting; .q-body filled by populateQ4Matrices() -->
+    <!-- Option C — one topic grid; follow-up academic vs social -->
     <div class="option-pane" data-pane="C">
       <div class="question">
-        <div class="q-row"><span class="q-num">4</span><span class="q-text">At UCLA, for each topic below, how comfortable did you feel expressing your views in <strong>academic settings</strong> (class, sections, office hours, coursework) and in <strong>social settings</strong> (peers, dorms, clubs, campus events)?</span></div>
+        <div class="q-row"><span class="q-num">4</span><span class="q-text">Overall at UCLA, how comfortable did you feel expressing your views on each of the following topics? (If you answer 1 or 2 on any row, you can indicate academic vs. social settings in the optional list below.)</span></div>
         <div class="q-body"></div>
       </div>
     </div>
@@ -1031,25 +1026,18 @@
     <div class="option-pane" data-pane="D">
       <div class="opt-meta-banner q4-lite-student-note">Shorter form: one combined setting instead of separate tables per place.</div>
       <div class="question">
-        <div class="q-row"><span class="q-num">4</span><span class="q-text">Taking your UCLA experience as a whole, how comfortable did you feel expressing your views on each of the following?</span></div>
+        <div class="q-row"><span class="q-num">4</span><span class="q-text">Taking your UCLA experience as a whole, how comfortable did you feel expressing your views on each of the following? (If you answer 1 or 2 on any row, you can use the optional list below to say where it applied.)</span></div>
         <div class="q-body"></div>
       </div>
     </div>
 
-    <!-- Q4 follow-up: very uncomfortable (1) → optional multi-select settings dropdown -->
+    <!-- Q4 follow-up: any 1 or 2 → optional checkboxes (option-specific for A–C) -->
     <div class="conditional" id="conditional-q4-settings" style="display: none;">
-      <div class="cond-tag">Optional — where “very uncomfortable” applied</div>
-      <p style="font-weight:600;font-size:14px;margin:6px 0 10px;line-height:1.4;">You chose <strong>1 (very uncomfortable)</strong> for at least one response. If you want, pick the <strong>setting(s)</strong> below (optional — leave empty to skip).</p>
-      <p id="q4-follow-omit-note" class="q4-follow-omit-note" style="display:none;font-size:13px;color:var(--muted);margin:0 0 10px;line-height:1.45;">Some lines are hidden here because they already appear as separate rows in your table.</p>
-      <p style="font-size:12px;color:var(--muted);margin:0 0 8px;"><strong>Tip:</strong> Use <kbd style="font-size:11px;padding:1px 6px;border:1px solid var(--rule);border-radius:4px;">Ctrl</kbd> or <kbd style="font-size:11px;padding:1px 6px;border:1px solid var(--rule);border-radius:4px;">⌘</kbd> to select more than one.</p>
-      <select id="q4_follow_settings" class="q4-follow-select" name="q4_follow_settings" multiple size="7" aria-label="Settings where you felt very uncomfortable">
-        <option value="class" data-q4-follow-key="class">In class, discussion sections, labs, or other coursework</option>
-        <option value="faculty" data-q4-follow-key="faculty">With faculty or instructors (office hours, advising, email)</option>
-        <option value="peers" data-q4-follow-key="peers">With peers or friends</option>
-        <option value="events" data-q4-follow-key="events">Campus events, rallies, protests, or public campus spaces</option>
-        <option value="online" data-q4-follow-key="online">Online (chats, social media, UCLA platforms)</option>
-        <option value="other" data-q4-follow-key="other">Other (describe in box below)</option>
-      </select>
+      <div class="cond-tag" id="q4-follow-cond-tag">Optional — follow-up</div>
+      <p id="q4-follow-lead" style="font-weight:600;font-size:16px;margin:6px 0 12px;line-height:1.45;"></p>
+      <p id="q4-follow-omit-note" class="q4-follow-omit-note" style="display:none;font-size:14px;color:var(--muted);margin:0 0 10px;line-height:1.45;"></p>
+      <p class="q4-follow-tip"><strong>Tip:</strong> Check <strong>every</strong> setting that applies. All optional — you can leave none checked.</p>
+      <div id="q4_follow_checkboxes" class="q4-follow-checkboxes" role="group" aria-labelledby="q4-follow-lead"></div>
       <div class="q4-follow-other-row">
         <label for="q4_follow_set_other_text">If you chose “Other,” you can add a few words (optional)</label>
         <input type="text" id="q4_follow_set_other_text" name="q4_follow_set_other_text" placeholder="optional" autocomplete="off">
@@ -1061,8 +1049,8 @@
     <div class="options-grid reviewer-only">
       <div class="option-card a review-card" data-opt="A">
         <div class="opt-label">Option A</div>
-        <h4>Five settings — dropdown + D-style grid</h4>
-        <p class="opt-summary"><strong>40 cells</strong> (8 topics × 5 contexts) · choose setting from menu · same table shape as D · ~3–4 min</p>
+        <h4>Five settings in follow-up · one topic grid</h4>
+        <p class="opt-summary"><strong>8</strong> topic ratings + optional multi-select of <strong>5</strong> places if any <strong>1–2</strong></p>
         <button class="details-toggle" type="button">Show details ▾</button>
         <div class="details-panel">
           <div class="spec-box">
@@ -1075,8 +1063,8 @@
       </div>
       <div class="option-card b review-card selected" data-opt="B">
         <div class="opt-label">Option B <span class="recommended-pill">FIRE-style</span></div>
-        <h4>Three settings — dropdown + D-style grid</h4>
-        <p class="opt-summary"><strong>24 cells</strong> (8 topics × 3 contexts) · choose setting from menu · same table shape as D · ~2 min</p>
+        <h4>Three settings in follow-up · one topic grid</h4>
+        <p class="opt-summary"><strong>8</strong> topic ratings + optional multi-select of <strong>3</strong> places if any <strong>1–2</strong></p>
         <button class="details-toggle" type="button">Show details ▾</button>
         <div class="details-panel">
           <div class="spec-box">
@@ -1089,8 +1077,8 @@
       </div>
       <div class="option-card c review-card" data-opt="C">
         <div class="opt-label">Option C</div>
-        <h4>Two settings — dropdown + D-style grid</h4>
-        <p class="opt-summary"><strong>16 cells</strong> (8 topics × 2 settings) · choose setting from menu · same table shape as D · ~1.5 min</p>
+        <h4>Two settings in follow-up · one topic grid</h4>
+        <p class="opt-summary"><strong>8</strong> topic ratings + optional multi-select of <strong>2</strong> places if any <strong>1–2</strong></p>
         <button class="details-toggle" type="button">Show details ▾</button>
         <div class="details-panel">
           <div class="spec-box">
@@ -1104,7 +1092,7 @@
       <div class="option-card d review-card" data-opt="D">
         <div class="opt-label">Option D <span class="recommended-pill">senior survey default</span></div>
         <h4>Short form — combined setting × 4 topics</h4>
-        <p class="opt-summary"><strong>4 cells</strong> (4 topics × 1 combined context) + N/A · ~30 sec · What students see in preview</p>
+        <p class="opt-summary"><strong>4</strong> topic ratings + optional broader “where” multi-select if any <strong>1–2</strong></p>
         <button class="details-toggle" type="button">Show details ▾</button>
         <div class="details-panel">
           <div class="spec-box">
@@ -1486,6 +1474,25 @@
     if (grid) parent.insertBefore(grid, optionSwitch);
   })();
 
+  const Q4_OPTION_CONTEXTS = {
+    A: [
+      ['qA_c1', 'In class discussions'],
+      ['qA_c2', 'With faculty or instructors outside class'],
+      ['qA_c3', 'With peers / friends'],
+      ['qA_c4', 'At campus events or in public settings'],
+      ['qA_c5', 'Online (social media, group chats)']
+    ],
+    B: [
+      ['qB_c1', 'In class or academic settings'],
+      ['qB_c2', 'With peers outside of class'],
+      ['qB_c3', 'With faculty or staff one-on-one']
+    ],
+    C: [
+      ['qC_a', 'Academic settings (class, sections, office hours, coursework)'],
+      ['qC_b', 'Social settings (peers, dorms, clubs, campus events)']
+    ]
+  };
+
   // ===== Generate full Q4 option matrices (A–D) dynamically =====
   (function populateQ4Matrices() {
     const TOPICS = [
@@ -1524,51 +1531,14 @@
       return `<div class="matrix-wrap"><table class="matrix"><thead>${SCALE_HEAD_ROW}</thead><tbody>${body}</tbody></table></div>`;
     }
 
-    /** Options A–C: same table as D; user picks setting from dropdown (stacks one matrix per setting). */
-    function dropdownContextMatrix(paneLetter, contexts, topics) {
-      const selectId = `q4_setting_select_${paneLetter}`;
-      const opts = contexts.map(([, label], i) => `<option value="${i}">${label}</option>`).join('');
-      const sheets = contexts.map(([prefix], i) =>
-        `<div class="q4-matrix-sheet" data-sheet-index="${i}"` + (i === 0 ? '>' : ' hidden>') +
-        `${matrixForPrefix(prefix, topics)}</div>`
-      ).join('');
-      return `
-    <div class="q4-dropdown-matrix" data-pane-letter="${paneLetter}">
-      <div class="q4-setting-row">
-        <label for="${selectId}">Setting</label>
-        <select id="${selectId}" class="q4-context-select" aria-label="Setting for the ratings below">
-          ${opts}
-        </select>
-      </div>
-      <div class="q4-matrix-sheets">${sheets}</div>
-    </div>`;
-    }
-
-    const OPTION_A = [
-      ['qA_c1', 'In class discussions'],
-      ['qA_c2', 'With faculty or instructors outside class'],
-      ['qA_c3', 'With peers / friends'],
-      ['qA_c4', 'At campus events or in public settings'],
-      ['qA_c5', 'Online (social media, group chats)']
-    ];
-    const OPTION_B = [
-      ['qB_c1', 'In class or academic settings'],
-      ['qB_c2', 'With peers outside of class'],
-      ['qB_c3', 'With faculty or staff one-on-one']
-    ];
-    const OPTION_C = [
-      ['qC_a', 'Academic settings (class, sections, office hours, coursework)'],
-      ['qC_b', 'Social settings (peers, dorms, clubs, campus events)']
-    ];
-
     const paneA = document.querySelector('.option-pane[data-pane="A"] .q-body');
-    if (paneA) paneA.innerHTML = dropdownContextMatrix('A', OPTION_A, TOPICS);
+    if (paneA) paneA.innerHTML = matrixForPrefix('qA_u', TOPICS);
     const paneB = document.querySelector('.option-pane[data-pane="B"] .q-body');
-    if (paneB) paneB.innerHTML = dropdownContextMatrix('B', OPTION_B, TOPICS);
+    if (paneB) paneB.innerHTML = matrixForPrefix('qB_u', TOPICS);
     const paneD = document.querySelector('.option-pane[data-pane="D"] .q-body');
     if (paneD) paneD.innerHTML = matrixForPrefix('q4_lite', TOPICS_LITE);
     const paneC = document.querySelector('.option-pane[data-pane="C"] .q-body');
-    if (paneC) paneC.innerHTML = dropdownContextMatrix('C', OPTION_C, TOPICS);
+    if (paneC) paneC.innerHTML = matrixForPrefix('qC_u', TOPICS);
   })();
 
   // ===== Q4 option switcher (works for both student tabs and reviewer cards) =====
@@ -1648,33 +1618,48 @@
   q7Inputs.forEach(inp => inp.addEventListener('change', update7Conditional));
   update7Conditional();
 
-  // ===== Q4 optional “where”: only when at least one cell is 1 (very uncomfortable) =====
-  function q4FollowHiddenKeys(paneLetter) {
-    const hide = new Set();
-    switch (paneLetter) {
-      case 'A':
-        ['class', 'faculty', 'peers', 'events', 'online'].forEach(k => hide.add(k));
-        break;
-      case 'B':
-        ['class', 'faculty', 'peers'].forEach(k => hide.add(k));
-        break;
-      case 'C':
-        ['class', 'faculty', 'peers', 'events'].forEach(k => hide.add(k));
-        break;
-      case 'D':
-      default:
-        break;
+  // ===== Q4 optional “where”: any 1 or 2 → multi-select (A–C = that option’s settings; D = broad list) =====
+  const Q4_FOLLOW_LABELS_D = {
+    class: 'Classes, labs, or coursework (including discussions)',
+    faculty: 'With faculty or instructors (office hours, advising, email)',
+    peers: 'With other students or in peer / social settings',
+    events: 'Campus events, rallies, protests, or public campus spaces',
+    online: 'Online — UCLA platforms, group chats, or social media',
+    other: 'Other (add a few words below if you want)',
+  };
+  const Q4_D_FOLLOW_ORDER = ['class', 'faculty', 'peers', 'events', 'online', 'other'];
+
+  let q4FollowCheckboxesBuiltForPane = null;
+
+  function rebuildQ4FollowCheckboxes(paneLetter) {
+    const wrap = document.getElementById('q4_follow_checkboxes');
+    if (!wrap) return 0;
+    let items = [];
+    if (paneLetter === 'D') {
+      items = Q4_D_FOLLOW_ORDER.map(k => [k, Q4_FOLLOW_LABELS_D[k]]);
+    } else {
+      const rows = Q4_OPTION_CONTEXTS[paneLetter];
+      if (!rows || !rows.length) {
+        wrap.innerHTML = '';
+        return 0;
+      }
+      items = rows.slice();
     }
-    return hide;
+    wrap.innerHTML = items.map(([val, label]) =>
+      `<label class="q4-follow-cb-item"><input type="checkbox" name="q4_follow_settings" value="${val}"><span>${label}</span></label>`
+    ).join('');
+    return items.length;
   }
-  function anyVeryUncomfortableInActiveQ4Matrix() {
+
+  function uncomfortableFollowupTriggeredInActiveQ4Matrix() {
     const pane = document.querySelector('.option-pane.active');
     if (!pane) return false;
     const checked = pane.querySelectorAll('table.matrix input[type="radio"]:checked');
     for (const el of checked) {
       const td = el.closest('td');
       if (!td) continue;
-      if (td.cellIndex === 1) return true;
+      const idx = td.cellIndex;
+      if (idx === 1 || idx === 2) return true;
     }
     return false;
   }
@@ -1683,49 +1668,46 @@
     if (!box) return;
     const paneEl = document.querySelector('.option-pane.active');
     const paneLetter = paneEl?.getAttribute('data-pane') || 'D';
-    const hidden = q4FollowHiddenKeys(paneLetter);
 
-    const note = document.getElementById('q4-follow-omit-note');
-    if (note) note.style.display = hidden.size > 0 ? 'block' : 'none';
-
-    let visibleCount = 0;
-    const sel = box.querySelector('#q4_follow_settings');
-    if (sel) {
-      sel.querySelectorAll('option[data-q4-follow-key]').forEach(opt => {
-        const key = opt.getAttribute('data-q4-follow-key');
-        const shouldHide = hidden.has(key);
-        opt.disabled = shouldHide;
-        if (shouldHide) opt.selected = false;
-        else visibleCount++;
-      });
+    const condTag = document.getElementById('q4-follow-cond-tag');
+    const lead = document.getElementById('q4-follow-lead');
+    if (condTag) condTag.textContent = 'Optional — which settings applied (you chose 1 or 2)';
+    if (lead) {
+      lead.innerHTML = 'You chose <strong>1</strong> or <strong>2</strong> for at least one topic. <strong>Check every setting below</strong> where that was the case — all optional; leave none checked to skip.';
     }
 
-    const veryUncomfortable = anyVeryUncomfortableInActiveQ4Matrix();
-    const showBox = veryUncomfortable && visibleCount > 0;
+    const note = document.getElementById('q4-follow-omit-note');
+    if (note) {
+      note.textContent = '';
+      note.style.display = 'none';
+    }
+
+    const otherRow = box.querySelector('.q4-follow-other-row');
+    if (otherRow) otherRow.style.display = paneLetter === 'D' ? 'block' : 'none';
+
+    const wrap = document.getElementById('q4_follow_checkboxes');
+    let visibleCount = 0;
+    if (wrap) {
+      if (q4FollowCheckboxesBuiltForPane !== paneLetter) {
+        visibleCount = rebuildQ4FollowCheckboxes(paneLetter);
+        q4FollowCheckboxesBuiltForPane = paneLetter;
+      } else {
+        visibleCount = wrap.querySelectorAll('input[type="checkbox"]').length;
+      }
+    }
+
+    const triggered = uncomfortableFollowupTriggeredInActiveQ4Matrix();
+    const showBox = triggered && visibleCount > 0;
     box.style.display = showBox ? 'block' : 'none';
 
     if (!showBox) {
-      if (sel) {
-        sel.querySelectorAll('option').forEach(o => { o.selected = false; });
-      }
+      if (wrap) wrap.querySelectorAll('input[type="checkbox"]').forEach(cb => { cb.checked = false; });
       const ot = box.querySelector('#q4_follow_set_other_text');
       if (ot) ot.value = '';
     }
   }
   document.body.addEventListener('change', (e) => {
     const t = e.target;
-    if (t && t.matches && t.matches('select.q4-context-select')) {
-      const wrap = t.closest('.q4-dropdown-matrix');
-      if (wrap) {
-        const idx = parseInt(t.value, 10);
-        wrap.querySelectorAll('.q4-matrix-sheet').forEach((sheet, i) => {
-          if (i === idx) sheet.removeAttribute('hidden');
-          else sheet.setAttribute('hidden', '');
-        });
-      }
-      updateQ4SettingsFollowup();
-      return;
-    }
     if (!t || !t.matches || !t.matches('input[type="radio"]')) return;
     if (t.closest('.option-pane.active table.matrix')) {
       updateQ4SettingsFollowup();
