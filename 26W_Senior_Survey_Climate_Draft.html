@@ -266,42 +266,26 @@
     letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
   #conditional-q4-settings .cond-tag { font-size: 12.5px; }
   #q4-follow-lead { font-size: 16px !important; line-height: 1.45; }
-  .q4-follow-checkboxes {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  /* Same checklist pattern as Q7 (opt-list), larger type for this block */
+  #conditional-q4-settings .q4-follow-opt-list {
+    gap: 10px;
     max-width: 640px;
     margin-top: 4px;
   }
-  .q4-follow-cb-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 14px 16px;
-    border: 1px solid var(--rule);
-    border-radius: 10px;
-    background: #fff;
-    cursor: pointer;
+  #conditional-q4-settings .q4-follow-opt-list label {
     font-size: 16px;
     line-height: 1.45;
-    color: var(--ink);
-    transition: background 0.1s, border-color 0.1s;
+    padding: 14px 16px;
+    border-radius: 10px;
   }
-  .q4-follow-cb-item:hover { background: var(--accent-soft); border-color: var(--accent); }
-  .q4-follow-cb-item:has(input:checked) {
-    background: var(--accent-soft);
-    border-color: var(--accent);
-    box-shadow: inset 0 0 0 1px var(--accent);
-  }
-  .q4-follow-cb-item input[type="checkbox"] {
-    margin-top: 3px;
-    width: 20px;
-    height: 20px;
+  #conditional-q4-settings .q4-follow-opt-list input[type="checkbox"] {
+    margin-top: 4px;
+    width: 22px;
+    height: 22px;
     flex-shrink: 0;
     accent-color: var(--accent);
     cursor: pointer;
   }
-  .q4-follow-cb-item span { flex: 1; }
   .q4-follow-tip { font-size: 14px; color: var(--muted); margin: 0 0 10px; line-height: 1.45; }
   .q4-follow-other-row { margin-top: 16px; max-width: 640px; }
   .q4-follow-other-row label { font-size: 15px; color: var(--muted); display: block; margin-bottom: 8px; }
@@ -771,15 +755,15 @@
       <ul>
         <li><strong>Sec 1 (Q1–2):</strong> headline belonging and respect</li>
         <li><strong>Sec 2 (Q3):</strong> UCLA support for diversity by identity dimension (matrix aligned with HERI-style institutional climate)</li>
-        <li><strong>Sec 3 (Q4):</strong> one topic grid; if <strong>1 or 2</strong>, optional multi-select of <strong>that option’s settings</strong> (D uses a short topic list + broad follow-up places).</li>
+        <li><strong>Sec 3 (Q4):</strong> one topic grid; if <strong>1 or 2</strong>, optional <strong>checkboxes</strong> for <strong>that option’s settings</strong> (D: short topic list + broader “where” list).</li>
         <li><strong>Sec 4 (Q5–6):</strong> dialogue climate and peer treatment of identity / viewpoint groups</li>
         <li><strong>Sec 5 (Q7+):</strong> experienced or observed bias or discrimination, with follow-ups</li>
         <li><strong>Sec 6 (Q10–11):</strong> self-censorship on politics and religion</li>
         <li><strong>Q12:</strong> optional open narrative</li>
       </ul>
       <h5>Section 3 (Expression climate / Q4) — it is a lot; how to streamline</h5>
-      <p><strong>Student preview</strong> is <strong>Option D</strong> (4 topics). <strong>A–C</strong> use <strong>one</strong> 8-topic comfort grid; a <strong>1 or 2</strong> triggers an optional multi-select of that version’s own setting labels (no repeated matrices).</p>
-      <p>Even <strong>Option B</strong> is now <strong>8 topic ratings</strong> plus an optional multi-select of <strong>3</strong> settings after any <strong>1–2</strong>; Option A uses <strong>5</strong> such settings. Practical ways to lighten burden <em>without</em> dropping the construct:</p>
+      <p><strong>Student preview</strong> is <strong>Option D</strong> (4 topics). <strong>A–C</strong> use <strong>one</strong> 8-topic comfort grid; a <strong>1 or 2</strong> triggers optional <strong>checkboxes</strong> with that version’s setting labels (no repeated matrices).</p>
+      <p>Even <strong>Option B</strong> is now <strong>8 topic ratings</strong> plus optional <strong>checkboxes</strong> for <strong>3</strong> settings after any <strong>1–2</strong>; Option A uses <strong>5</strong>. Practical ways to lighten burden <em>without</em> dropping the construct:</p>
       <ul>
         <li><strong>Ship Option D (or C)</strong> in production for the senior survey; reserve A or B for pilots, alternate years, or deep-dive samples.</li>
         <li><strong>Fewer topic rows</strong> in production (e.g. retain race, religion, politics, and one “other sensitive” bucket) if analysts pre-specify which contrasts matter for UCLA reporting.</li>
@@ -820,7 +804,7 @@
           <td class="num">3</td>
           <td class="section-name"><strong>Expression Climate</strong></td>
           <td class="section-items">Q4</td>
-          <td>Comfort per topic (one grid); optional <strong>where</strong> multi-select after <strong>1 or 2</strong> (option-specific settings for A–C; broader list for D)</td>
+          <td>Comfort per topic (one grid); optional <strong>where</strong> <strong>checkboxes</strong> after <strong>1 or 2</strong> (option-specific for A–C; broader list for D)</td>
           <td class="decision">Adopt D vs. B/C/A (8 topics + option-specific follow-up settings after 1–2)?</td>
         </tr>
         <tr>
@@ -986,7 +970,7 @@
         <li>If moving beyond D, should “online” and “public campus events” stay as separate contexts, or be folded into a broader bucket?</li>
       </ol>
       <div class="decision-context">Option D keeps the construct while avoiding grid fatigue. Options A–B mirror FIRE / Heterodox-style designs when richer topic × setting data are needed.</div>
-      <p class="decision-context" style="margin-top:12px;padding-top:12px;border-top:1px dashed #e8d9a5;"><strong>Choosing a form:</strong> Burden order is <strong>D → C → B → A</strong>. After any <strong>1 or 2</strong>, optional multi-select: <strong>A–C</strong> use that option’s own setting labels; <strong>D</strong> uses a broader place list.</p>
+      <p class="decision-context" style="margin-top:12px;padding-top:12px;border-top:1px dashed #e8d9a5;"><strong>Choosing a form:</strong> Burden order is <strong>D → C → B → A</strong>. After any <strong>1 or 2</strong>, optional <strong>checkboxes:</strong> <strong>A–C</strong> use that option’s own setting labels; <strong>D</strong> uses a broader place list.</p>
     </div>
 
     <div class="option-switch">
@@ -1037,7 +1021,7 @@
       <p id="q4-follow-lead" style="font-weight:600;font-size:16px;margin:6px 0 12px;line-height:1.45;"></p>
       <p id="q4-follow-omit-note" class="q4-follow-omit-note" style="display:none;font-size:14px;color:var(--muted);margin:0 0 10px;line-height:1.45;"></p>
       <p class="q4-follow-tip"><strong>Tip:</strong> Check <strong>every</strong> setting that applies. All optional — you can leave none checked.</p>
-      <div id="q4_follow_checkboxes" class="q4-follow-checkboxes" role="group" aria-labelledby="q4-follow-lead"></div>
+      <div id="q4_follow_checkboxes" class="opt-list q4-follow-opt-list" role="group" aria-labelledby="q4-follow-lead"></div>
       <div class="q4-follow-other-row">
         <label for="q4_follow_set_other_text">If you chose “Other,” you can add a few words (optional)</label>
         <input type="text" id="q4_follow_set_other_text" name="q4_follow_set_other_text" placeholder="optional" autocomplete="off">
@@ -1050,7 +1034,7 @@
       <div class="option-card a review-card" data-opt="A">
         <div class="opt-label">Option A</div>
         <h4>Five settings in follow-up · one topic grid</h4>
-        <p class="opt-summary"><strong>8</strong> topic ratings + optional multi-select of <strong>5</strong> places if any <strong>1–2</strong></p>
+        <p class="opt-summary"><strong>8</strong> topic ratings + optional <strong>checkboxes</strong> (<strong>5</strong> settings) if any <strong>1–2</strong></p>
         <button class="details-toggle" type="button">Show details ▾</button>
         <div class="details-panel">
           <div class="spec-box">
@@ -1064,7 +1048,7 @@
       <div class="option-card b review-card selected" data-opt="B">
         <div class="opt-label">Option B <span class="recommended-pill">FIRE-style</span></div>
         <h4>Three settings in follow-up · one topic grid</h4>
-        <p class="opt-summary"><strong>8</strong> topic ratings + optional multi-select of <strong>3</strong> places if any <strong>1–2</strong></p>
+        <p class="opt-summary"><strong>8</strong> topic ratings + optional <strong>checkboxes</strong> (<strong>3</strong> settings) if any <strong>1–2</strong></p>
         <button class="details-toggle" type="button">Show details ▾</button>
         <div class="details-panel">
           <div class="spec-box">
@@ -1078,7 +1062,7 @@
       <div class="option-card c review-card" data-opt="C">
         <div class="opt-label">Option C</div>
         <h4>Two settings in follow-up · one topic grid</h4>
-        <p class="opt-summary"><strong>8</strong> topic ratings + optional multi-select of <strong>2</strong> places if any <strong>1–2</strong></p>
+        <p class="opt-summary"><strong>8</strong> topic ratings + optional <strong>checkboxes</strong> (<strong>2</strong> settings) if any <strong>1–2</strong></p>
         <button class="details-toggle" type="button">Show details ▾</button>
         <div class="details-panel">
           <div class="spec-box">
@@ -1092,7 +1076,7 @@
       <div class="option-card d review-card" data-opt="D">
         <div class="opt-label">Option D <span class="recommended-pill">senior survey default</span></div>
         <h4>Short form — combined setting × 4 topics</h4>
-        <p class="opt-summary"><strong>4</strong> topic ratings + optional broader “where” multi-select if any <strong>1–2</strong></p>
+        <p class="opt-summary"><strong>4</strong> topic ratings + optional broader “where” <strong>checkboxes</strong> if any <strong>1–2</strong></p>
         <button class="details-toggle" type="button">Show details ▾</button>
         <div class="details-panel">
           <div class="spec-box">
@@ -1618,7 +1602,7 @@
   q7Inputs.forEach(inp => inp.addEventListener('change', update7Conditional));
   update7Conditional();
 
-  // ===== Q4 optional “where”: any 1 or 2 → multi-select (A–C = that option’s settings; D = broad list) =====
+  // ===== Q4 optional “where”: any 1 or 2 → checkboxes (A–C = that option’s settings; D = broad list) =====
   const Q4_FOLLOW_LABELS_D = {
     class: 'Classes, labs, or coursework (including discussions)',
     faculty: 'With faculty or instructors (office hours, advising, email)',
@@ -1646,7 +1630,7 @@
       items = rows.slice();
     }
     wrap.innerHTML = items.map(([val, label]) =>
-      `<label class="q4-follow-cb-item"><input type="checkbox" name="q4_follow_settings" value="${val}"><span>${label}</span></label>`
+      `<label><input type="checkbox" name="q4_follow_settings" value="${val}"><span>${label}</span></label>`
     ).join('');
     return items.length;
   }
